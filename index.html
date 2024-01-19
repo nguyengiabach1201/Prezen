@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transition-effect.css">
+
+    <!-- Icons support -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- LaTex support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="presentation-area">
+            <section class="presentation">
+                <div class="slide ef1 show">
+                    <div class="heading">
+                        Đề mục
+                    </div>
+                    <div class="content grid center">
+                        <h3 class="title">
+                            Bài thuyết trình <br /> Của Artium!!!
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="slide ef2">
+                    <div class="heading">
+                        Test tính năng
+                    </div>
+                    <div class="content grid center">
+                        <h3 class="title">
+                            Bách depzai
+                        </h3>
+                        <p class="sub-title">
+                            Minh depzai
+                        </p>
+                        <p>Nhật béo</p>
+                        <p>Khôi béo</p>
+                        <p><a href="">quanvahuydepgai@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="slide ef3">
+                    <div class="heading">
+                        Toán
+                    </div>
+                    <div class="content grid center">
+                        <p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+                        </p>
+                    </div>
+                </div>
+
+                <div class="slide ef4">
+                    <div class="heading">
+                        Đoạn văn ngắn
+                    </div>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, deserunt? Accusantium iure
+                            illo reiciendis ut minus ab, sed voluptates iste sapiente, velit doloremque! Voluptatum
+                            magnam, doloribus blanditiis suscipit consequuntur consectetur!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, deserunt? Accusantium iure
+                            illo reiciendis ut minus ab, sed voluptates iste sapiente, velit doloremque! Voluptatum
+                            magnam, doloribus blanditiis suscipit consequuntur consectetur!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, deserunt? Accusantium iure
+                            illo reiciendis ut minus ab, sed voluptates iste sapiente, velit doloremque! Voluptatum
+                            magnam, doloribus blanditiis suscipit consequuntur consectetur!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, deserunt? Accusantium iure
+                            illo reiciendis ut minus ab, sed voluptates iste sapiente, velit doloremque! Voluptatum
+                            magnam, doloribus blanditiis suscipit consequuntur consectetur!</p>
+                    </div>
+                </div>
+
+                <div class="slide ef5">
+                    <div class="heading">
+                        Ảnh
+                    </div>
+                    <div class="content grid center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" alt="" width="100%"
+                            height="100%">
+                    </div>
+                </div>
+
+                <div class="slide ef10">
+                    <div class="heading">
+                        Không biết để gì:)
+                    </div>
+                    <div class="content grid center">
+                        $$x=\frac{15}{2m}+n$$
+                    </div>
+                </div>
+
+                <div class="slide ef12 ef11">
+                    <div class="heading">
+                        Cười:)
+                    </div>
+                    <div class="content grid center container-element">
+                        <p style="margin: 0; display: inline-block; white-space: nowrap;" class="fit-text">FIT TEXT
+                        </p>
+                        <br>
+                        <p style="margin: 0; display: inline-block; white-space: nowrap;" class="fit-text">CAN BE
+                            USED FOR MULTIPLE HEADLINES</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="counter"></section>
+
+            <section class="navigation">
+                <button id="left-btn" class="btn">
+                    <i class="fas fa-solid fa-caret-left"></i>
+                </button>
+
+                <button id="right-btn" class="btn">
+                    <i class="fa-solid fa-caret-right"></i>
+                </button>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function fitText() {
+            const container = document.querySelector('.container-element');
+            console.log(container.querySelectorAll('.fit-text'));
+            container.querySelectorAll('.fit-text').forEach(textElement => {
+                textElement.style.fontSize = '50px';
+                console.log(textElement.style.fontSize, textElement.offsetWidth, container.clientWidth)
+                // while (textElement.offsetWidth < container.clientWidth - 15) {
+                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
+                // }
+                // if (textElement.offsetWidth < container.clientWidth - 15) {
+                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
+                // }
+                // if (textElement.offsetWidth < container.clientWidth - 15) {
+                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
+                // }
+                // if (textElement.offsetWidth < container.clientWidth - 15) {
+                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
+                // }
+                // if (textElement.offsetWidth < container.clientWidth - 15) {
+                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
+                // }
+                // if (textElement.offsetWidth < container.clientWidth - 15) {
+                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
+                // }
+                console.log(textElement.style.fontSize, textElement.scrollWidth , container.clientWidth)
+            });
+        }
+        fitText();
+        // console.log('done');
+        // window.addEventListener('resize', fitText);
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

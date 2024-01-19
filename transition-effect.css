@@ -1,0 +1,68 @@
+/* Zoom in */
+.slide:not(.show).ef1 {
+    transform: scale(0);
+}
+
+/* Zoom out */
+.slide:not(.show).ef2 {
+    transform: scale(5);
+}
+
+/* Right to left */
+.slide:not(.show).ef3 {
+    transform: translateX(100vw);
+}
+
+/* Left to right */
+.slide:not(.show).ef4 {
+    transform: translateX(-100vw);
+}
+
+/* Top to bottom */
+.slide:not(.show).ef5 {
+    transform: translateY(100vw);
+}
+
+/* Bottom to top */
+.slide:not(.show).ef6 {
+    transform: translateY(-100vw);
+}
+
+/* Rotate aruond */
+.slide:not(.show).ef7 {
+    transform: rotateY(4rad);
+}
+.slide.show.ef7 {
+    transition: all 1s ease;
+}
+
+/* Rotate left to right */
+.slide:not(.show).ef8 {
+    transform: rotateZ(-3.14rad);
+}
+
+/* Rotate right to left */
+.slide:not(.show).ef9 {
+    transform: rotateZ(3.14rad);
+}
+
+/* Skew left to right */
+.slide:not(.show).ef10 {
+    transform: skew(.312rad);
+}
+.slide.show.ef10 {
+    transition: all .75s ease;
+}
+
+/* Skew right to left */
+.slide:not(.show).ef11 {
+    transform: skew(-.312rad);
+}
+.slide.show.ef11 {
+    transition: all .75s ease;
+}
+
+/* Fade in */
+.slide.show.ef12 {
+    transition: all .75s ease;
+}
