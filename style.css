@@ -6,6 +6,17 @@
     transition: all 0.35s ease;
 }
 
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+	background: rgb(203, 203, 203);
+}
+
 .navigation::-moz-selection {
     background: white;
 }

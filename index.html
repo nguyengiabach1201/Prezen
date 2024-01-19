@@ -89,8 +89,7 @@
                         Ảnh
                     </div>
                     <div class="content grid center">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" alt="" width="100%"
-                            height="100%">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" alt="" style="object-fit: contain; height: 700px; height: 300px; border: 1px red dotted;">
                     </div>
                 </div>
 
@@ -107,12 +106,12 @@
                     <div class="heading">
                         Cười:)
                     </div>
-                    <div class="content grid center container-element">
-                        <p style="margin: 0; display: inline-block; white-space: nowrap;" class="fit-text">FIT TEXT
-                        </p>
-                        <br>
-                        <p style="margin: 0; display: inline-block; white-space: nowrap;" class="fit-text">CAN BE
-                            USED FOR MULTIPLE HEADLINES</p>
+                    <div class="content grid center">
+                        <h2 style="margin: 0; font-size: clamp(50px, 8vw, 8.1vw);">Tam giác đều
+                        </h2>
+                        <!-- <br>
+                        <p style="margin: 0; font-size: clamp(50px, 8vw, 100px);">CAN BE
+                            USED FOR MULTIPLE HEADLINES</p> -->
                     </div>
                 </div>
             </section>
@@ -131,40 +130,8 @@
         </div>
     </div>
 
-    <script>
-        function fitText() {
-            const container = document.querySelector('.container-element');
-            console.log(container.querySelectorAll('.fit-text'));
-            container.querySelectorAll('.fit-text').forEach(textElement => {
-                textElement.style.fontSize = '50px';
-                console.log(textElement.style.fontSize, textElement.offsetWidth, container.clientWidth)
-                // while (textElement.offsetWidth < container.clientWidth - 15) {
-                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
-                // }
-                // if (textElement.offsetWidth < container.clientWidth - 15) {
-                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
-                // }
-                // if (textElement.offsetWidth < container.clientWidth - 15) {
-                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
-                // }
-                // if (textElement.offsetWidth < container.clientWidth - 15) {
-                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
-                // }
-                // if (textElement.offsetWidth < container.clientWidth - 15) {
-                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
-                // }
-                // if (textElement.offsetWidth < container.clientWidth - 15) {
-                //     textElement.style.fontSize = (parseFloat(textElement.style.fontSize) + 1) + 'px';
-                // }
-                console.log(textElement.style.fontSize, textElement.scrollWidth , container.clientWidth)
-            });
-        }
-        fitText();
-        // console.log('done');
-        // window.addEventListener('resize', fitText);
-    </script>
-
     <script src="script.js"></script>
+    <script src="swipe.js"></script>
 </body>
 
 </html>
