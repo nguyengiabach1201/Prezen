@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slideshow</title>
 
+    <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="transition-effect.css">
+    <link rel="stylesheet" href="layout.css">
 
     <!-- Icons support -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -20,12 +22,16 @@
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
         </script>
 
+    <!-- Chart support -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 </head>
 
 <body>
     <div class="container">
         <div id="presentation-area">
             <section class="presentation">
+
                 <div class="slide ef1 show">
                     <div class="heading">
                         Đề mục
@@ -68,7 +74,7 @@
                     <div class="heading">
                         Đoạn văn ngắn
                     </div>
-                    <div class="content">
+                    <div class="content grid">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, deserunt? Accusantium iure
                             illo reiciendis ut minus ab, sed voluptates iste sapiente, velit doloremque! Voluptatum
                             magnam, doloribus blanditiis suscipit consequuntur consectetur!</p>
@@ -89,7 +95,7 @@
                         Ảnh
                     </div>
                     <div class="content grid center">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" alt="" style="object-fit: contain; height: 700px; height: 300px; border: 1px red dotted;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" alt="">
                     </div>
                 </div>
 
@@ -98,7 +104,10 @@
                         Không biết để gì:)
                     </div>
                     <div class="content grid center">
-                        $$x=\frac{15}{2m}+n$$
+                        <!-- $$x=\frac{15}{2m}+n$$ -->
+                        <!-- <p>Hello world!</p> -->
+                        <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_3000,h_2250,f_auto/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/x1nlzlyldasoj6pllfug/V%C3%A9V%C3%A0oC%E1%BB%95ngIMGWorldsofAdventure,Dubai-KlookVi%E1%BB%87tNam.jpg"
+                            alt="">
                     </div>
                 </div>
 
@@ -107,11 +116,22 @@
                         Cười:)
                     </div>
                     <div class="content grid center">
-                        <h2 style="margin: 0; font-size: clamp(50px, 8vw, 8.1vw);">Tam giác đều
-                        </h2>
-                        <!-- <br>
-                        <p style="margin: 0; font-size: clamp(50px, 8vw, 100px);">CAN BE
-                            USED FOR MULTIPLE HEADLINES</p> -->
+                        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="">
+                        <p>Hello world!</p>
+                    </div>
+                </div>
+
+                <div class="slide ef13">
+                    <div class="heading">
+                        Biểu đồ
+                    </div>
+                    <div class="content grid center">
+                        <div class="chart" name="Test 1">
+                            Name: Bảng 1
+                            Tháng 1:1000
+                            Tháng 1:1000
+                            Tháng 1:1000
+                        </div>
                     </div>
                 </div>
             </section>
@@ -132,6 +152,7 @@
 
     <script src="script.js"></script>
     <script src="swipe.js"></script>
+    <script src="chart.js"></script>
 </body>
 
 </html>

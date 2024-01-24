@@ -1,7 +1,8 @@
 // get elements
 let presentation = document.querySelector(".presentation");
-let slides = document.querySelectorAll(".slide");
-let currentSlide = document.querySelector(".slide.show");
+// let slides = document.querySelectorAll(".slide");
+// let currentSlide = document.querySelector(".slide.show");
+let slides, currentSlide;
 
 var slideNumber = document.querySelector(".counter");
 var toLeftBtn = document.querySelector("#left-btn");
@@ -31,6 +32,9 @@ init();
 
 function init() {
     fullScreenMode();
+
+    slides = document.querySelectorAll(".slide");
+    currentSlide = document.querySelector(".slide.show");
 
     getCurrentSlideNo();
     totalSides = slides.length;

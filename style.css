@@ -7,14 +7,14 @@
 }
 
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
-	background-color: white;
+    width: 6px;
+    height: 6px;
+    background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 25px;
-	background: rgb(203, 203, 203);
+    background: rgb(203, 203, 203);
 }
 
 .navigation::-moz-selection {
@@ -66,7 +66,6 @@ a {
     width: 1000px;
     height: 500px;
     position: relative;
-    background: purple;
 }
 
 /* Styling all three sections */
@@ -74,7 +73,7 @@ a {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #ffffff;
+    background-color: var(--background);
     position: relative;
 }
 
@@ -154,15 +153,17 @@ a {
     width: 100%;
     height: 100%;
     z-index: 11;
+    display: grid;
+    /* margin: auto; */
 }
 
-.slide:has(.heading) > .content {
+.slide:has(.heading)>.content {
     height: calc(100% - 100px);
 }
 
-.presentation .content.grid {
+/* .presentation .content.grid {
     display: grid;
-}
+} */
 
 .presentation .content.grid.center {
     justify-content: center;
@@ -172,23 +173,39 @@ a {
 
 .content .title {
     font-size: 3em;
-    color: purple;
+    color: var(--theme);
 }
 
 .content .sub-title {
     font-size: 2.5em;
-    color: purple;
+    color: var(--theme);
 }
 
 .content p {
     font-size: 1.25em;
     margin-bottom: 1rem;
+    color: var(--p-color);
 }
 
-
 .content:not(.center) p {
-
     text-align: justify;
+}
+
+a {
+    color: var(--theme);
+}
+
+img {
+    object-fit: contain;
+    width: 100%;
+    max-height: 50vh;
+    align-items: none;
+}
+
+.chart {
+    min-width: 50vw;
+    max-width: calc(100vw - 4em);
+    width: auto;
 }
 
 /* End Content Stylesheet */
@@ -200,7 +217,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ffffff;
+    background-color: var(--background);
     opacity: 0;
     visibility: none;
 }
@@ -213,8 +230,8 @@ a {
 
 .slide .heading {
     padding: 2rem;
-    background: purple;
+    background: var(--theme);
     font-size: 2em;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--heading);
 }

@@ -1,3 +1,5 @@
+/* ef0: None */
+
 /* Zoom in */
 .slide:not(.show).ef1 {
     transform: scale(0);
