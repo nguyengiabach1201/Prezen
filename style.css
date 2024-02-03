@@ -165,18 +165,18 @@ a {
     display: grid;
 } */
 
-.presentation .content.grid.center {
+.presentation .content.center {
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.content .title {
+.content h1, h2, h3 {
     font-size: 3em;
     color: var(--theme);
 }
 
-.content .sub-title {
+.content h4, h5, h6 {
     font-size: 2.5em;
     color: var(--theme);
 }
@@ -207,6 +207,8 @@ img {
     max-width: calc(100vw - 4em);
     width: auto;
 }
+
+.slide:not(.show) iframe {display: none;}
 
 /* End Content Stylesheet */
 
