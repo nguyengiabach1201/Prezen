@@ -42,14 +42,28 @@
         }
     });
 
+    // add counter & navigation button
+    function fromHTML(html, trim = true) {
+        html = trim ? html : html.trim();
+        if (!html) return null;
+        const template = document.createElement('template');
+        template.innerHTML = html;
+        const result = template.content.children;
+        if (result.length === 1) return result[0];
+        return result;
+    }
+    let counter = fromHTML('<section class="counter"></section>');
+    let navigation = fromHTML('<section class="navigation"><button id="left-btn" class="btn"><i class="fas fa-solid fa-caret-left"></i></button><button id="right-btn" class="btn"><i class="fa-solid fa-caret-right"></i></button></section>');
+    let presentationController = document.querySelector("#presentation-area");
+    presentationController.appendChild(counter);
+    presentationController.appendChild(navigation);
+
     // get elements
     let slides, currentSlide;
 
     var slideNumber = document.querySelector(".counter");
     var toLeftBtn = document.querySelector("#left-btn");
     var toRightBtn = document.querySelector("#right-btn");
-
-    let presentationController = document.querySelector("#presentation-area");
 
     // initailize defualt values
     var currentSlideNo = 1;

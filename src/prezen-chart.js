@@ -8,8 +8,7 @@ function fromHTML(html, trim = true) {
     return result;
 }
 
-let charts = document.querySelectorAll('.chart');
-charts.forEach(chart => {
+function createChart(chart, type) {
     let str = chart.innerHTML;
     let strs = str.split('\n');
     let rawData = [];
@@ -28,7 +27,7 @@ charts.forEach(chart => {
     var ctx = chartCanvas.getContext('2d');
 
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: type,
         data: {
             datasets: [{
                 label: '',
@@ -87,4 +86,9 @@ charts.forEach(chart => {
             myChart.data.datasets[0].label = value;
         }
     });
+}
+
+let charts = document.querySelectorAll('.chart');
+charts.forEach(chart => {
+    createChart(chart, 'bar');
 });
