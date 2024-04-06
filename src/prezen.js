@@ -28,16 +28,16 @@
         document.body.style.display = "flex";
         addScript("https://nguyengiabach1201.github.io/Prezen/src/prezen-chart.js", true);
 
-        if (!getComputedStyle(document.documentElement).getPropertyValue('--theme') == '') {
+        if (getComputedStyle(document.documentElement).getPropertyValue('--theme') == '') {
             document.documentElement.style.setProperty('--theme', '#1e90ff');
         }
-        if (!getComputedStyle(document.documentElement).getPropertyValue('--background') == '') {
+        if (getComputedStyle(document.documentElement).getPropertyValue('--background') == '') {
             document.documentElement.style.setProperty('--background', 'white');
         }
-        if (!getComputedStyle(document.documentElement).getPropertyValue('--heading') == '') {
+        if (getComputedStyle(document.documentElement).getPropertyValue('--heading') == '') {
             document.documentElement.style.setProperty('--heading', 'white');
         }
-        if (!getComputedStyle(document.documentElement).getPropertyValue('--p-color') == '') {
+        if (getComputedStyle(document.documentElement).getPropertyValue('--p-color') == '') {
             document.documentElement.style.setProperty('--p-color', 'black');
         }
     });
