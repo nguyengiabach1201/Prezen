@@ -9,6 +9,7 @@ function fromHTML(html, trim = true) {
 }
 
 let charts = document.querySelectorAll('.chart');
+console.log(charts);
 charts.forEach(chart => {
     let str = chart.innerHTML;
     let strs = str.split('\n');
