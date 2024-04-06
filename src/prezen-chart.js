@@ -91,6 +91,7 @@ function createChart(chart, type) {
 let bars = document.querySelectorAll('.chart:not(.pie), .chart:not(.line), .chart.bar');
 bars.forEach(chart => {
     createChart(chart, 'bar');
+    console.log(chart);
 });
 let pies = document.querySelectorAll('.chart.pie');
 pies.forEach(chart => {
