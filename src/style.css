@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    transition: all 0.25s ease;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background: rgb(203, 203, 203);
+}
+
+.navigation::-moz-selection {
+    background: white;
+}
+
+.navigation::selection {
+    background: white;
+}
+
+.counter::-moz-selection {
+    color: #b6b6b6;
+    background: white;
+}
+
+.counter::selection {
+    color: #b6b6b6;
+    background: white;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    margin-left: 2rem;
+}
+
+ul li,
+a {
+    font-size: 1.2em;
+}
+
+.container {
+    background: #212121;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#presentation-area {
+    width: 1000px;
+    height: 500px;
+    position: relative;
+}
+
+/* Styling all three sections */
+#presentation-area .presentation {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--background);
+    position: relative;
+}
+
+#presentation-area .counter {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    color: #b6b6b6;
+}
+
+#presentation-area .navigation {
+    position: absolute;
+    bottom: -45px;
+    right: 0;
+}
+
+/* On full screen mode */
+#presentation-area.full-screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#presentation-area.full-screen .counter {
+    bottom: 15px;
+    left: 15px;
+}
+
+#presentation-area.full-screen .navigation {
+    bottom: 15px;
+    right: 15px;
+}
+
+#presentation-area.full-screen .navigation .btn:hover {
+    background: #201e1e;
+    color: #ffffff;
+}
+
+#presentation-area.full-screen .navigation .btn-screen:hover {
+    background: #201e1e;
+}
+
+/* End full screen mode */
+
+/* Buttons */
+.navigation button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.navigation .btn {
+    background: #464646;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.navigation .btn.show {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+}
+
+/* End Buttons */
+
+/* content */
+.presentation .content {
+    padding: 2em;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    display: grid;
+    /* margin: auto; */
+}
+
+.slide:has(.heading)>.content {
+    height: calc(100% - 100px);
+}
+
+/* .presentation .content.grid {
+    display: grid;
+} */
+
+.presentation .content.center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--theme);
+}
+
+.content h1 {
+    font-size: 6em;
+}
+
+.content h2 {
+    font-size: 5em;
+}
+
+.content h3 {
+    font-size: 4em;
+}
+
+.content h4 {
+    font-size: 3em;
+}
+
+.content h5 {
+    font-size: 2em;
+}
+
+.content h6 {
+    font-size: 1em;
+}
+
+.content p {
+    font-size: 1.25em;
+    margin-bottom: 1rem;
+    color: var(--p-color);
+}
+
+.content:not(.center) p {
+    text-align: justify;
+}
+
+a {
+    color: var(--theme);
+}
+
+img {
+    object-fit: contain;
+    width: 100%;
+    max-height: 50vh;
+    align-items: none;
+}
+
+.chart {
+    min-width: 50vw;
+    max-width: calc(100vw - 4em);
+    width: auto;
+}
+
+.slide:not(.show) iframe {
+    display: none;
+}
+
+/* End Content Stylesheet */
+
+/* Slide */
+.presentation .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    opacity: 0;
+    visibility: none;
+}
+
+.slide.show {
+    opacity: 1;
+    transform: initial;
+    visibility: visible;
+}
+
+.slide .heading {
+    padding: 2rem;
+    background: var(--theme);
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--heading);
+}
