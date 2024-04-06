@@ -88,7 +88,7 @@ function createChart(chart, type) {
     });
 }
 
-let bars = document.querySelectorAll('.chart, .chart.bar');
+let bars = document.querySelectorAll('.chart:not(.pie), .chart:not(.line), .chart.bar');
 bars.forEach(chart => {
     createChart(chart, 'bar');
 });
