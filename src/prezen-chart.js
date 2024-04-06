@@ -90,16 +90,13 @@ function createChart(chart, type) {
 
 let bars = document.querySelectorAll('.chart.bar');
 bars.forEach(chart => {
-    console.log(chart);
     createChart(chart, 'bar');
 });
 let pies = document.querySelectorAll('.chart.pie');
 pies.forEach(chart => {
-    console.log(chart);
     createChart(chart, 'pie');
 });
 let lines = document.querySelectorAll('.chart.line');
 lines.forEach(chart => {
-    console.log(chart);
     createChart(chart, 'line');
 });
