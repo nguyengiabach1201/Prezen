@@ -338,8 +338,8 @@ img {
 }
 
 :root {
-    --theme: #1e90ff;
-    --background: white;
-    --heading: white;
-    --p-color: black;
+    --theme: #1e90ff !important;
+    --background: white !important;
+    --heading: white !important;
+    --p-color: black !important;
 }
