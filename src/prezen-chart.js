@@ -88,3 +88,5 @@ charts.forEach(chart => {
         }
     });
 });
+
+console.log("Test chart");
