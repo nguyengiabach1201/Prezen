@@ -336,10 +336,3 @@ img {
 .slide.show.ef12 {
     transition: all .75s ease;
 }
-
-:root {
-    --theme: #1e90ff !important;
-    --background: white !important;
-    --heading: white !important;
-    --p-color: black !important;
-}
