@@ -225,14 +225,6 @@ img {
     display: none;
 }
 
-.clip-text {
-    background: 50% 50%;
-    background-size: cover;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-}
-
 /* End Content Stylesheet */
 
 /* Slide */
