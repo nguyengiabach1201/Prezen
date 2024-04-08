@@ -211,13 +211,6 @@ video {
     align-items: none;
 }
 
-iframe {
-    object-fit: contain;
-    height: 100%;
-    max-width: 50vw;
-    align-items: none;
-}
-
 .chart {
     min-width: 50vw;
     max-width: calc(100vw - 4em);
