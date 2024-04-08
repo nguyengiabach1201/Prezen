@@ -144,16 +144,11 @@ a {
     height: 100%;
     z-index: 11;
     display: grid;
-    /* margin: auto; */
 }
 
 .slide:has(.heading)>.content {
     height: calc(100% - 100px);
 }
-
-/* .presentation .content.grid {
-    display: grid;
-} */
 
 .presentation .content.center {
     justify-content: center;
@@ -208,7 +203,7 @@ a {
     color: var(--theme);
 }
 
-img {
+img, video, iframe {
     object-fit: contain;
     width: 100%;
     max-height: 50vh;
