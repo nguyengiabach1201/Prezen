@@ -1,11 +1,10 @@
 (function () {
     // add scripts & styles
     document.body.style.display = "none";
-    function addScript(src, body) {
+    function addScript(src) {
         var s = document.createElement('script');
         s.setAttribute('src', src);
-        if (!body) document.head.appendChild(s);
-        else document.body.appendChild(s);
+        document.head.appendChild(s);
     }
 
     function addStyle(src) {
@@ -26,7 +25,7 @@
     // fully loaded
     window.addEventListener('load', function () {
         document.body.style.display = "flex";
-        addScript("https://nguyengiabach1201.github.io/Prezen/src/prezen-chart.js", true);
+        addScript("https://nguyengiabach1201.github.io/Prezen/src/prezen-chart.js");
 
         if (getComputedStyle(document.documentElement).getPropertyValue('--theme') == '') {
             document.documentElement.style.setProperty('--theme', '#1e90ff');
@@ -42,6 +41,21 @@
         }
     });
 
+    // add #presentation-area
+    const presentation = document.querySelector(".presentation");
+    const presentationController = document.createElement("div");
+    presentationController.id = "presentation-area"
+
+    if (presentation.parentNode) {
+        presentation.parentNode.insertBefore(presentationController, presentation);
+    } else {
+        document.body.appendChild(presentationController);
+    }
+    presentationController.appendChild(presentation);
+
+    // auto show the first slide
+    document.querySelectorAll(".slide")[0].classList.add("show");
+
     // add counter & navigation button
     function fromHTML(html, trim = true) {
         html = trim ? html : html.trim();
@@ -54,7 +68,6 @@
     }
     let counter = fromHTML('<section class="counter"></section>');
     let navigation = fromHTML('<section class="navigation"><button id="left-btn" class="btn"><i class="fas fa-solid fa-caret-left"></i></button><button id="right-btn" class="btn"><i class="fa-solid fa-caret-right"></i></button></section>');
-    let presentationController = document.querySelector("#presentation-area");
     presentationController.appendChild(counter);
     presentationController.appendChild(navigation);
 

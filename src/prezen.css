@@ -217,7 +217,7 @@ video {
     width: auto;
 }
 
-.slide:not(.show) iframe {
+.slide:not(.show) iframe, .slide:not(.show) video {
     display: none;
 }
 
