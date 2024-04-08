@@ -221,6 +221,10 @@ video {
     display: none;
 }
 
+.slide:not(.show) {
+    z-index: -1;
+}
+
 /* End Content Stylesheet */
 
 /* Slide */
