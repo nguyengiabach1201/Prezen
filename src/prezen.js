@@ -22,10 +22,13 @@
     addStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
     addStyle("https://nguyengiabach1201.github.io/Prezen/src/prezen.css");
 
+    addScript("https://nguyengiabach1201.github.io/Prezen/plugins/prism.js");
+    addStyle("https://nguyengiabach1201.github.io/Prezen/plugins/prism.css");
+
     // fully loaded
     window.addEventListener('load', function () {
         document.body.style.display = "flex";
-        addScript("https://nguyengiabach1201.github.io/Prezen/src/prezen-chart.js");
+        addScript("https://nguyengiabach1201.github.io/Prezen/plugins/prezen-chart.js");
 
         if (getComputedStyle(document.documentElement).getPropertyValue('--theme') == '') {
             document.documentElement.style.setProperty('--theme', '#1e90ff');
