@@ -1,6 +1,24 @@
 (function () {
+    function fromHTML(html, trim = true) {
+        html = trim ? html : html.trim();
+        if (!html) return null;
+        const template = document.createElement('template');
+        template.innerHTML = html;
+        const result = template.content.children;
+        if (result.length === 1) return result[0];
+        return result;
+    }
+
+    // add wait screen
+    let loaderStyle = document.createElement("style");
+    loaderStyle.innerText = "#loader{position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;z-index:9999}#loader:after{content:'';display:block;width:50px;height:50px;border-radius:50%;border:5px solid #1e90ff;border-top-color:transparent;animation:1s linear infinite spin}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}";
+    document.head.appendChild(loaderStyle);
+
+    let loader = fromHTML('<div id="loader"></div>');
+    document.body.appendChild(loader);
+
     // add scripts & styles
-    document.body.style.display = "none";
+    document.querySelector(".presentation").style.display = "none";
     function addScript(src) {
         var s = document.createElement('script');
         s.setAttribute('src', src);
@@ -22,12 +40,11 @@
     addStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
     addStyle("https://nguyengiabach1201.github.io/Prezen/src/prezen.css");
 
-    addScript("https://nguyengiabach1201.github.io/Prezen/plugins/prism.js");
-    addStyle("https://nguyengiabach1201.github.io/Prezen/plugins/prism.css");
-
     // fully loaded
     window.addEventListener('load', function () {
-        document.body.style.display = "flex";
+        document.querySelector(".presentation").style.display = "flex";
+        document.querySelector("#loader").remove();
+        
         addScript("https://nguyengiabach1201.github.io/Prezen/plugins/prezen-chart.js");
 
         if (getComputedStyle(document.documentElement).getPropertyValue('--theme') == '') {
@@ -56,19 +73,14 @@
     }
     presentationController.appendChild(presentation);
 
+    for (let i = 0; i < presentation.children.length; i++) {
+        presentation.children[i].classList.add("slide");
+    }
+
     // auto show the first slide
     document.querySelectorAll(".slide")[0].classList.add("show");
 
     // add counter & navigation button
-    function fromHTML(html, trim = true) {
-        html = trim ? html : html.trim();
-        if (!html) return null;
-        const template = document.createElement('template');
-        template.innerHTML = html;
-        const result = template.content.children;
-        if (result.length === 1) return result[0];
-        return result;
-    }
     let counter = fromHTML('<section class="counter"></section>');
     let navigation = fromHTML('<section class="navigation"><button id="left-btn" class="btn"><i class="fas fa-solid fa-caret-left"></i></button><button id="right-btn" class="btn"><i class="fa-solid fa-caret-right"></i></button></section>');
     presentationController.appendChild(counter);
