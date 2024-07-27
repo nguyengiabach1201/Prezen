@@ -2,7 +2,7 @@
     function fromHTML(html, trim = true) {
         html = trim ? html : html.trim();
         if (!html) return null;
-        const template = document.createElement('template');
+        const template = document.createElement("template");
         template.innerHTML = html;
         const result = template.content.children;
         if (result.length === 1) return result[0];
@@ -11,7 +11,8 @@
 
     // add wait screen
     let loaderStyle = document.createElement("style");
-    loaderStyle.innerText = "#loader{position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;z-index:9999}#loader:after{content:'';display:block;width:50px;height:50px;border-radius:50%;border:5px solid #1e90ff;border-top-color:transparent;animation:1s linear infinite spin}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}";
+    loaderStyle.innerText =
+        "#loader{position:fixed;top:0;left:0;width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;z-index:9999}#loader:after{content:'';display:block;width:50px;height:50px;border-radius:50%;border:5px solid #1e90ff;border-top-color:transparent;animation:1s linear infinite spin}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}";
     document.head.appendChild(loaderStyle);
 
     let loader = fromHTML('<div id="loader"></div>');
@@ -20,15 +21,15 @@
     // add scripts & styles
     document.querySelector(".presentation").style.display = "none";
     function addScript(src) {
-        var s = document.createElement('script');
-        s.setAttribute('src', src);
+        var s = document.createElement("script");
+        s.setAttribute("src", src);
         document.head.appendChild(s);
     }
 
     function addStyle(src) {
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
         link.href = src;
         document.head.appendChild(link);
     }
@@ -37,37 +38,60 @@
     addScript("https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js");
     addScript("https://cdn.jsdelivr.net/npm/chart.js@2.8.0");
 
-    addStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+    addStyle(
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+    );
     addStyle("https://nguyengiabach1201.github.io/Prezen/src/prezen.css");
 
     // fully loaded
-    window.addEventListener('load', function () {
+    window.addEventListener("load", function () {
         document.querySelector(".presentation").style.display = "flex";
         document.querySelector("#loader").remove();
-        
-        addScript("https://nguyengiabach1201.github.io/Prezen/plugins/prezen-chart.js");
 
-        if (getComputedStyle(document.documentElement).getPropertyValue('--theme') == '') {
-            document.documentElement.style.setProperty('--theme', '#1e90ff');
+        addScript(
+            "https://nguyengiabach1201.github.io/Prezen/plugins/prezen-chart.js",
+        );
+
+        if (
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--theme",
+            ) == ""
+        ) {
+            document.documentElement.style.setProperty("--theme", "#1e90ff");
         }
-        if (getComputedStyle(document.documentElement).getPropertyValue('--background') == '') {
-            document.documentElement.style.setProperty('--background', 'white');
+        if (
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--background",
+            ) == ""
+        ) {
+            document.documentElement.style.setProperty("--background", "white");
         }
-        if (getComputedStyle(document.documentElement).getPropertyValue('--heading') == '') {
-            document.documentElement.style.setProperty('--heading', 'white');
+        if (
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--heading",
+            ) == ""
+        ) {
+            document.documentElement.style.setProperty("--heading", "white");
         }
-        if (getComputedStyle(document.documentElement).getPropertyValue('--p-color') == '') {
-            document.documentElement.style.setProperty('--p-color', 'black');
+        if (
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--p-color",
+            ) == ""
+        ) {
+            document.documentElement.style.setProperty("--p-color", "black");
         }
     });
 
     // add #presentation-area
     const presentation = document.querySelector(".presentation");
     const presentationController = document.createElement("div");
-    presentationController.id = "presentation-area"
+    presentationController.id = "presentation-area";
 
     if (presentation.parentNode) {
-        presentation.parentNode.insertBefore(presentationController, presentation);
+        presentation.parentNode.insertBefore(
+            presentationController,
+            presentation,
+        );
     } else {
         document.body.appendChild(presentationController);
     }
@@ -82,7 +106,9 @@
 
     // add counter & navigation button
     let counter = fromHTML('<section class="counter"></section>');
-    let navigation = fromHTML('<section class="navigation"><button id="left-btn" class="btn"><i class="fas fa-solid fa-caret-left"></i></button><button id="right-btn" class="btn"><i class="fa-solid fa-caret-right"></i></button></section>');
+    let navigation = fromHTML(
+        '<section class="navigation"><button id="left-btn" class="btn"><i class="fas fa-solid fa-caret-left"></i></button><button id="right-btn" class="btn"><i class="fa-solid fa-caret-right"></i></button></section>',
+    );
     presentationController.appendChild(counter);
     presentationController.appendChild(navigation);
 
@@ -98,15 +124,19 @@
     var totalSides = 0;
 
     // keyboard input
-    document.addEventListener('keydown', (event) => {
-        var name = event.key;
-        if (name == "ArrowDown" || name == "ArrowRight") {
-            moveToRightSlide();
-        }
-        if (name == "ArrowUp" || name == "ArrowLeft") {
-            moveToLeftSlide();
-        }
-    }, false);
+    document.addEventListener(
+        "keydown",
+        (event) => {
+            var name = event.key;
+            if (name == "ArrowDown" || name == "ArrowRight") {
+                moveToRightSlide();
+            }
+            if (name == "ArrowUp" || name == "ArrowLeft") {
+                moveToLeftSlide();
+            }
+        },
+        false,
+    );
 
     // run init script
     init();
@@ -194,22 +224,24 @@
     }
 
     // swipping
-    document.addEventListener('touchstart', handleTouchStart, false);
-    document.addEventListener('touchmove', handleTouchMove, false);
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchmove", handleTouchMove, false);
 
     var xDown = null;
     var yDown = null;
 
     function getTouches(evt) {
-        return evt.touches ||             // browser API
-            evt.originalEvent.touches; // jQuery
+        return (
+            evt.touches || // browser API
+            evt.originalEvent.touches
+        ); // jQuery
     }
 
     function handleTouchStart(evt) {
         const firstTouch = getTouches(evt)[0];
         xDown = firstTouch.clientX;
         yDown = firstTouch.clientY;
-    };
+    }
 
     function handleTouchMove(evt) {
         if (!xDown || !yDown) {
@@ -222,7 +254,8 @@
         var xDiff = xDown - xUp;
         var yDiff = yDown - yUp;
 
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            /*most significant*/
             if (xDiff > 0) {
                 /* right swipe */
                 moveToRightSlide();
@@ -240,5 +273,5 @@
         /* reset values */
         xDown = null;
         yDown = null;
-    };
+    }
 })();
