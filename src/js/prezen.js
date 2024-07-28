@@ -79,9 +79,6 @@
             <button id="right-btn" class="btn">
                 <i class="fa-solid fa-caret-right"></i>
             </button>
-            <button class="btn">
-                <i class="fa-solid fa-caret-right"></i>
-            </button>
         </section>`
     );
     presentationController.appendChild(counter);
