@@ -29,7 +29,7 @@
     }
 
     addStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
-    addStyle("https://nguyengiabach1201.github.io/Prezen/src/prezen.css");
+    addStyle("https://nguyengiabach1201.github.io/Prezen/src/css/prezen.css");
 
     // remove wait screen when fully loaded
     window.addEventListener('load', function () {
