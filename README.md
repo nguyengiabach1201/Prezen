@@ -8,3 +8,6 @@ __Prezen__ is a powerful tool that empowers users to craft dynamic and scalable 
 ## To-do
 - Support Markdown
 - Draw on slides during a presentation
+
+## Contact
+Feel free to fork this repository or open issues. For any further information, please contact [my email](mailto:nguyengiabach1201@gmail.com).
