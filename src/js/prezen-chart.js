@@ -52,11 +52,9 @@ function createChart(chart, type) {
         },
         options: {
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+                y: {
+                    beginAtZero: true,
+                }
             },
             animation: {
                 tension: {
@@ -64,7 +62,7 @@ function createChart(chart, type) {
                     easing: 'easeInCubic',
                     from: 1,
                     to: 0,
-                    loop: true
+                    loop: true,
                 }
             },
         }

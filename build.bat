@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 @REM ,.\src\prezen.js
-set "file_list=.\plugins\tex-chtml.js,.\plugins\chart.js@2.8.0,.\src\js\prezen-chart.js,.\src\js\prezen.min.js" 
+set "file_list=.\plugins\tex-chtml.js,.\plugins\chart.js,.\src\js\prezen-chart.min.js,.\src\js\prezen.min.js" 
 set "output_file=prezen.js"
 
 set "output_path=."
