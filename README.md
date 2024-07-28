@@ -52,6 +52,15 @@ The slide is divided into two `div`s:
 ### Slides' effects
 Additionally, you can add __transition effects__ to your slides!
 
+Simply add the effect name to the slide's class list:
+```html
+<div class="ef1">
+    <div class="content">
+        <h1>This slide has a transition effect!!!</h1>
+    </div>
+</div>
+```
+
 There are 12 effects in total:
 - `ef1`: Zoom in
 - `ef2`: Zoom out
@@ -65,6 +74,9 @@ There are 12 effects in total:
 - `ef10`: Skew left to right
 - `ef11`: Skew right to left
 - `ef12`: Fade in
+
+> [!NOTE]
+> You can also __merge__ many effects just by writing __multiple__ effect names.
 
 ### Charts
 
