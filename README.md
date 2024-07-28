@@ -30,7 +30,7 @@ Here is the initial template for your presentation with __Prezen__:
 ### Create your first slide
 Inside `<div class="presentation"></div>` is where you put your slides in. 
 
-To create a slide, simply paste the following code:
+To create a slide, paste the following code:
 ```html
 <div>
     <div class="heading">
@@ -40,11 +40,23 @@ To create a slide, simply paste the following code:
 </div>
 ```
 
+If you don't want your slide to have a heading, you could remove the upper `div`.
+
+The slide is divided into two `div`s:
+- The first is the __heading__, this div contain bare text which is your desire title
+- The second is the __content__, build your slides just like you build your website with HTML
+
+### Slides' effects
+
+### Charts
+
+### Change theme
 
 ### Example
 I also included a [template](./template.html) file that contains all of __Prezen__ features!
 
 ## To-do
+- Fixing charts' sizes
 - Support Markdown
 - Draw on slides during a presentation
 
