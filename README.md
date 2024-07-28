@@ -79,6 +79,19 @@ There are 12 effects in total:
 > You can also __merge__ many effects just by writing __multiple__ effect names.
 
 ### Charts
+Prezen also comes with a __chart displayer__. The syntax for this is a bit more complex.
+
+You first create a `div`, which itself has class `chart` then the chart type: `bar` or `line` or `pie`. Then inside that `div` is first the chart name, then the data.
+
+Here is an example:
+```html
+<div class="chart bar">
+    Name: Foo
+    Bar:1000
+    Foo:1000
+    Bar:1000
+</div>
+```
 
 ### Change theme
 
