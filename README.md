@@ -59,7 +59,6 @@ The slide is divided into two `div`s:
 I also included a [template](./template.html) file that contains all of __Prezen__ features!
 
 ## To-do
-- Fixing charts' sizes
 - Support Markdown
 - Draw on slides during a presentation
 
