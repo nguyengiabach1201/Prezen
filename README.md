@@ -46,10 +46,25 @@ To create a slide, paste the following code:
 > If you want your contents to be centered, simply add `center` to the second `div`'s class list.
 
 The slide is divided into two `div`s:
-- The first is the __heading__, this div contain bare text which is your desire title.
-- The second is the __content__, build your slides just like you build your website with HTML.
+- The first is the __heading__, this div contains bare text which is your desired title.
+- The second is the __content__, build your slides just like you build your website with __HTML__.
 
 ### Slides' effects
+Additionally, you can add __transition effects__ to your slides!
+
+There are 12 effects in total:
+- `ef1`: Zoom in
+- `ef2`: Zoom out
+- `ef3`: Right to left
+- `ef4`: Left to right
+- `ef5`: Top to bottom
+- `ef6`: Bottom to top
+- `ef7`: Rotate around
+- `ef8`: Rotate left to right
+- `ef9`: Rotate right to left
+- `ef10`: Skew left to right
+- `ef11`: Skew right to left
+- `ef12`: Fade in
 
 ### Charts
 
