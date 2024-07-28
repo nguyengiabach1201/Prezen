@@ -79,7 +79,7 @@ There are 12 effects in total:
 > You can also __merge__ many effects just by writing __multiple__ effect names.
 
 ### Charts
-Prezen also comes with a __chart displayer__. The syntax for this is a bit more complex.
+__Prezen__ also comes with a __chart displayer__. The syntax for this is a bit more complex.
 
 You first create a `div`, which itself has class `chart` then the chart type: `bar` or `line` or `pie`. Then inside that `div` is first the chart name, then the data.
 
@@ -94,6 +94,23 @@ Here is an example:
 ```
 
 ### Change theme
+__Prezen__'s default theme is a light-blue theme, but it is modifiable.
+
+You would need to create a `CSS` file with any names you want. Inside that file, inside `:root` class, there are 4 values you can change based on your will:
+- `background`: Which is the color for the background of your presentation.
+- `theme`: Which is the color for `<h1>` to `<h6>` tags, __header__ and many others.
+- `heading`: Which is the color for the __heading's title__.
+- `p-color`: Which is the color for the `<p>` tags
+  
+Here is an example:
+```css
+:root {
+    --theme: #ea5312;
+    --background: white;
+    --heading: white;
+    --p-color: black;
+}
+```
 
 ### Example
 I also included a [template](./template.html) file that contains all of __Prezen__ features!
