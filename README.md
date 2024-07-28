@@ -31,7 +31,7 @@ Here is the initial template for your presentation with __Prezen__:
 Inside `<div class="presentation"></div>` is where you put your slides in. 
 
 To create a slide, simply paste the following code:
-```
+```html
 <div>
     <div class="heading">
     </div>
