@@ -5,6 +5,34 @@ __Prezen__ is a powerful tool that empowers users to craft dynamic and scalable 
 
 ## How to use
 
+### Initial
+Here is the initial template for your presentation with __Prezen__:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+</head>
+
+<body>
+    <div class="presentation">
+
+    </div>
+    <script src="./prezen.js"></script>
+</body>
+
+</html>
+```
+
+### Create your first slide
+
+
+### Example
+I also included a [template](./template.html) file that contains all of __Prezen__ features!
+
 ## To-do
 - Support Markdown
 - Draw on slides during a presentation
