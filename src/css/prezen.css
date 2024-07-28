@@ -98,7 +98,7 @@ a {
 }
 
 #presentation-area.full-screen .navigation .btn:hover {
-    background: #201e1e;
+    background: #424040;
     color: #ffffff;
 }
 
@@ -122,7 +122,6 @@ a {
 }
 
 .navigation .btn {
-    background: #464646;
     color: #ffffff;
     border-radius: 0.25rem;
     opacity: 0;
