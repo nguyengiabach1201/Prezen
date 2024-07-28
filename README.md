@@ -40,11 +40,14 @@ To create a slide, paste the following code:
 </div>
 ```
 
-If you don't want your slide to have a heading, you could remove the upper `div`.
+> [!NOTE]  
+> If you don't want your slide to have a heading, you could remove the first `div`.
+>
+> If you want your contents to be centered, simply add `center` to the second `div`'s class list.
 
 The slide is divided into two `div`s:
-- The first is the __heading__, this div contain bare text which is your desire title
-- The second is the __content__, build your slides just like you build your website with HTML
+- The first is the __heading__, this div contain bare text which is your desire title.
+- The second is the __content__, build your slides just like you build your website with HTML.
 
 ### Slides' effects
 
