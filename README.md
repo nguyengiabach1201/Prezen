@@ -113,7 +113,10 @@ Here is an example:
 ```
 
 ### Example
-I also included a [template](./template.html) file that contains all of __Prezen__ features!
+I also included a [template](./example.html) file that contains all of __Prezen__ features!
+
+## Markdown support
+__Prezen__ also support editting with [__Markdown__](./src/markdown/example.md)! The syntax is simple, just like __Github's Markdown__.
 
 ## To-do
 - Support Markdown
