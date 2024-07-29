@@ -15,7 +15,7 @@ function template(markdown) {
     async load() {
       await super.load()
       this.template = \`
-        <style>:host { display: flex; align-items: center; justify-content: center; position: relative; contain: content; padding: 1rem; } :host([hidden]) { display: none; }</style>
+        <style>:host { display: flex; align-items: center; justify-content: center; position: relative; contain: content; left: 20vw; width: 60vw; } :host([hidden]) { display: none; }</style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown-light.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11/styles/github.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
@@ -50,12 +50,17 @@ function join(html) {
     html[i] = html[i].trim();
 
     if (html[i] == "---") {
-      html[i] = `</script></zero-md></div></div><div><div class='content'><zero-md><script type="text/markdown">`;
+      html[i] =
+        `</script></zero-md></div></div><div><div class='content'><zero-md><script type="text/markdown">`;
     }
   }
   html = html.join("\n");
 
-  return `<div><div class='content'><zero-md><script type="text/markdown">` + html + `</script></zero-md></div></div>`;
+  return (
+    `<div><div class='content'><zero-md><script type="text/markdown">` +
+    html +
+    `</script></zero-md></div></div>`
+  );
 }
 
 for (let i = 2; i < process.argv.length; i++) {
