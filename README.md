@@ -118,6 +118,8 @@ I also included a [example](./example.html) file that contains almost all of __P
 ## Markdown support
 __Prezen__ also support editting with [__Markdown__](./example.md)! The syntax is simple, just like __Github's Markdown__.
 
+And then, to convert that Markdown file into presentable HTML, run [`markdown.js`](./src/markdown/markdown.js) plus your file names!
+
 ## To-do
 - Support Markdown
 - Draw on slides during a presentation
