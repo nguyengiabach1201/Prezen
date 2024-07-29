@@ -116,7 +116,7 @@ Here is an example:
 I also included a [example](./example.html) file that contains almost all of __Prezen__ features!
 
 ## Markdown support
-__Prezen__ also support editting with [__Markdown__](./src/markdown/example.md)! The syntax is simple, just like __Github's Markdown__.
+__Prezen__ also support editting with [__Markdown__](./example.md)! The syntax is simple, just like __Github's Markdown__.
 
 ## To-do
 - Support Markdown
