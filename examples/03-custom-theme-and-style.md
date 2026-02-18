@@ -1,6 +1,6 @@
 ---
 title: "Custom Theme & Style Demo"
-theme: default
+theme: 03-custom-theme-and-style.css
 paginate: true
 style: |
     /* Custom style injected via front-matter */
@@ -22,9 +22,9 @@ style: |
 
 # 🎨 Custom Themes & Inline Styles
 
-This slide uses the **default** Prezen theme with custom style injected via the YAML front-matter.
+This slide uses the custom theme injected via the YAML front-matter.
 
-- **Theme**: default (one of: default, academic, cooporative, hacker)
+- **Theme**: custom theme
 - **Font**: Segoe UI (Customized via style)
 - **Features**: paginate, custom CSS, inline styles
 
