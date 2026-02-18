@@ -268,8 +268,8 @@ function compileHtml() {
 }
 
 async function compilePdfAndPptx() {
-    getTheme();
     getMarkdownSlides();
+    getTheme();
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
