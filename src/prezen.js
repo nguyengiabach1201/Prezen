@@ -1,6 +1,7 @@
 import matter from "gray-matter";
 import { marked } from "marked";
 import fs from "fs";
+import path from "path";
 
 import highlightCss from "./assets/plugins/highlight.js/default.min.css" with { type: "text" };
 import highlightJs from "./assets/plugins/highlight.js/highlight.min.js" with { type: "text" };
@@ -40,6 +41,8 @@ Usage: bun run prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
+  --preview            Enable preview mode with live reload
+  --port <port>        Set the port for review mode
   -h, --help           Display this help message
 `;
 
@@ -49,6 +52,8 @@ const options = {
     theme: "default",
     paginate: false,
     style: null,
+    preview: false,
+    port: 3000,
 };
 
 for (let i = 0; i < args.length; i++) {
@@ -64,6 +69,12 @@ for (let i = 0; i < args.length; i++) {
         case "--file":
             options.filePath = args[++i];
             break;
+        case "--preview":
+            options.preview = true;
+            break;
+        case "--port":
+            options.port = args[++i];
+            break;
         default:
             console.error(`Error: Unknown option ${arg}\nUse -h for help.`);
             process.exit(-1);
@@ -74,6 +85,45 @@ if (!options.filePath) {
     console.error("Error: Missing required argument --file <path>");
     console.log(helpMessage);
     process.exit(-1);
+}
+
+let isCustomTheme;
+let theme;
+
+function getTheme() {
+    isCustomTheme = false;
+
+    switch (options.theme) {
+        case "default":
+            theme = themeDefault;
+            break;
+        case "academic":
+            theme = themeAcademic;
+            break;
+        case "cooporative":
+            theme = themeCooporative;
+            break;
+        case "hacker":
+            theme = themeHacker;
+            break;
+        default:
+            isCustomTheme = true;
+
+            try {
+                theme = fs.readFileSync(
+                    path.join(
+                        path.dirname(path.resolve(options.filePath)),
+                        options.theme,
+                    ),
+                    "utf-8",
+                );
+            } catch (err) {
+                console.error(`Error: Could not add this custom theme ${err}`);
+                process.exit(-1);
+            }
+
+            break;
+    }
 }
 
 function splitMarkdownByHr(markdown) {
@@ -102,27 +152,7 @@ function splitMarkdownByHr(markdown) {
 }
 
 function generateFullHtml(htmlSlides) {
-    let isCustomTheme = false;
-    let theme;
-
-    switch (options.theme) {
-        case "default":
-            theme = themeDefault;
-            break;
-        case "academic":
-            theme = themeAcademic;
-            break;
-        case "cooporative":
-            theme = themeCooporative;
-            break;
-        case "hacker":
-            theme = themeHacker;
-            break;
-        default:
-            isCustomTheme = true;
-            theme = options.theme;
-            break;
-    }
+    getTheme();
 
     const slidesBody = htmlSlides
         .map(
@@ -130,6 +160,16 @@ function generateFullHtml(htmlSlides) {
                 `<div class="slide" ${options.paginate ? `data-page="${index + 1}"` : ""}>${html}</div>`,
         )
         .join("\n");
+
+    const liveReloadScript = options.preview
+        ? `
+    <script>
+        const ws = new WebSocket("ws://" + location.host + "/ws");
+        ws.onmessage = (event) => {
+            if (event.data === "reload") location.reload();
+        };
+    </script>`
+        : "";
 
     return `
 <!DOCTYPE html>
@@ -159,9 +199,11 @@ function generateFullHtml(htmlSlides) {
     <script>hljs.highlightAll();</script>
 
     <style>${shellCss}</style>
-    ${isCustomTheme ? `<link rel="stylesheet" href="${theme}">` : `<style>${theme}</style>`}
+    <style>${theme}</style>
 
     ${typeof options.style == "string" ? `<style>${options.style}</style>` : ""}
+
+    ${liveReloadScript}
 </head>
 
 <body>
@@ -179,7 +221,7 @@ function generateFullHtml(htmlSlides) {
 `;
 }
 
-try {
+function buildFullHtml() {
     const file = matter.read(options.filePath);
     const data = file.data;
     const content = file.content.replace(
@@ -205,8 +247,78 @@ try {
     const htmlSlides = splitMarkdownByHr(content);
     const fullHtml = generateFullHtml(htmlSlides);
 
-    fs.writeFileSync(options.filePath + ".html", fullHtml, "utf-8");
-} catch (err) {
-    console.error(`Error: Could not read file ${err.message}`);
-    process.exit(-1);
+    return fullHtml;
+}
+
+if (options.preview) {
+    try {
+        buildFullHtml();
+
+        const port = options.port;
+        const sockets = new Set();
+
+        Bun.serve({
+            port,
+            fetch(req, server) {
+                const url = new URL(req.url);
+                if (url.pathname === "/ws") {
+                    if (server.upgrade(req)) return;
+                    return new Response("Upgrade failed", { status: 400 });
+                }
+                return new Response(buildFullHtml(), {
+                    headers: { "Content-Type": "text/html" },
+                });
+            },
+            websocket: {
+                open(ws) {
+                    sockets.add(ws);
+                },
+                close(ws) {
+                    sockets.add(ws);
+                },
+                message() {}, // No-op
+            },
+        });
+
+        console.log(`Preview server running at http://localhost:${port}`);
+        console.log(`Watching for changes in: ${options.filePath}`);
+
+        fs.watch(options.filePath, (event) => {
+            if (event === "change") {
+                console.log(`Re-compiling ${options.filePath}...`);
+                for (const socket of sockets) {
+                    socket.send("reload");
+                }
+            }
+        });
+
+        if (isCustomTheme) {
+            fs.watch(
+                path.join(
+                    path.dirname(path.resolve(options.filePath)),
+                    options.theme,
+                ),
+                (event) => {
+                    if (event === "change") {
+                        console.log(`Re-compiling ${options.filePath}...`);
+                        for (const socket of sockets) {
+                            socket.send("reload");
+                        }
+                    }
+                },
+            );
+        }
+    } catch (err) {
+        console.error(`Error: Could not run preview mode ${err.message}`);
+        process.exit(-1);
+    }
+} else {
+    try {
+        const fullHtml = buildFullHtml();
+        fs.writeFileSync(options.filePath + ".html", fullHtml, "utf-8");
+        console.log(`Created ${options.filePath}.html`);
+    } catch (err) {
+        console.error(`Error: Could not read file ${err.message}`);
+        process.exit(-1);
+    }
 }
