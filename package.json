@@ -12,7 +12,8 @@
     },
     "dependencies": {
         "gray-matter": "^4.0.3",
-        "marked": "^17.0.2"
+        "marked": "^17.0.2",
+        "puppeteer": "^24.37.4"
     },
     "devDependencies": {
         "@types/bun": "latest"

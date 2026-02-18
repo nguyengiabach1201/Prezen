@@ -1,5 +1,6 @@
 import matter from "gray-matter";
 import { marked } from "marked";
+import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
 
@@ -41,6 +42,7 @@ Usage: bun run prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
+  --pdf                Export PDF file
   --preview            Enable preview mode with live reload
   --port <port>        Set the port for review mode
   -h, --help           Display this help message
@@ -48,6 +50,7 @@ Options:
 
 const options = {
     filePath: null,
+    exportPdf: false,
     title: "Prezen Slides",
     theme: "default",
     paginate: false,
@@ -68,6 +71,9 @@ for (let i = 0; i < args.length; i++) {
         case "-f":
         case "--file":
             options.filePath = args[++i];
+            break;
+        case "--pdf":
+            options.exportPdf = true;
             break;
         case "--preview":
             options.preview = true;
@@ -151,10 +157,38 @@ function splitMarkdownByHr(markdown) {
     });
 }
 
-function generateFullHtml(htmlSlides) {
+let markdownSlides;
+
+function getMarkdownSlides() {
+    const file = matter.read(options.filePath);
+    const data = file.data;
+    const content = file.content.replace(
+        /^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/,
+    );
+
+    if (typeof data.title == "string") {
+        options.title = data.title;
+    }
+
+    if (typeof data.theme == "string") {
+        options.theme = data.theme;
+    }
+
+    if (data.paginate) {
+        options.paginate = true;
+    }
+
+    if (typeof data.style === "string") {
+        options.style = data.style;
+    }
+
+    markdownSlides = splitMarkdownByHr(content);
+}
+
+function generateFullHtml(markdownSlides) {
     getTheme();
 
-    const slidesBody = htmlSlides
+    const slidesBody = markdownSlides
         .map(
             (html, index) =>
                 `<div class="slide" ${options.paginate ? `data-page="${index + 1}"` : ""}>${html}</div>`,
@@ -208,7 +242,7 @@ function generateFullHtml(htmlSlides) {
 
 <body>
     <svg viewBox="0 0 1280 720">
-        <foreignObject width="1280" height="720" class="prezen-slide-container markdown-body">
+        <foreignObject width="1280" height="720" class="prezen-slide-container">
             ${slidesBody}
         </foreignObject>
     </svg>
@@ -221,38 +255,102 @@ function generateFullHtml(htmlSlides) {
 `;
 }
 
-function buildFullHtml() {
-    const file = matter.read(options.filePath);
-    const data = file.data;
-    const content = file.content.replace(
-        /^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/,
-    );
-
-    if (typeof data.title == "string") {
-        options.title = data.title;
-    }
-
-    if (typeof data.theme == "string") {
-        options.theme = data.theme;
-    }
-
-    if (data.paginate) {
-        options.paginate = true;
-    }
-
-    if (typeof data.style === "string") {
-        options.style = data.style;
-    }
-
-    const htmlSlides = splitMarkdownByHr(content);
-    const fullHtml = generateFullHtml(htmlSlides);
-
+function compileHtml() {
+    getMarkdownSlides();
+    const fullHtml = generateFullHtml(markdownSlides);
     return fullHtml;
+}
+
+async function compilePdf() {
+    getTheme();
+    getMarkdownSlides();
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    await page.setViewport({ width: 1280, height: 720 });
+
+    const slidesBody = markdownSlides
+        .map(
+            (html, index) => `
+<svg viewBox="0 0 1280 720" style="position: absolute; top: ${720 * index}">
+    <foreignObject width="1280" height="720" class="prezen-slide-container">
+        <div class="slide" ${options.paginate ? `data-page="${index + 1}"` : ""}>
+            ${html}
+        </div>
+    </foreignObject>
+</svg>`,
+        )
+        .join("\n");
+
+    const fullHtml = `
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false,
+            }
+        };
+    </script>
+
+    <script async>${mathJaxJs}</script>
+    
+    <style>${highlightCss}</style>
+    <script>${highlightJs}</script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            padding: 70px;
+            box-sizing: border-box;
+        }
+    </style>
+    <style>${theme}</style>
+
+    ${typeof options.style == "string" ? `<style>${options.style}</style>` : ""}
+</head>
+
+<body>
+    ${slidesBody}
+</body>
+
+</html>
+`;
+
+    await page.setContent(fullHtml);
+
+    await page.pdf({
+        path: `${options.filePath}.pdf`,
+        width: "1280px",
+        height: "720px",
+        printBackground: true,
+        margin: { top: "0px", right: "0px", bottom: "0px", left: "0px" },
+    });
+
+    await browser.close();
+    console.log(`Created ${options.filePath}.pdf`);
 }
 
 if (options.preview) {
     try {
-        buildFullHtml();
+        compileHtml();
 
         const port = options.port;
         const sockets = new Set();
@@ -265,7 +363,7 @@ if (options.preview) {
                     if (server.upgrade(req)) return;
                     return new Response("Upgrade failed", { status: 400 });
                 }
-                return new Response(buildFullHtml(), {
+                return new Response(compileHtml(), {
                     headers: { "Content-Type": "text/html" },
                 });
             },
@@ -312,13 +410,20 @@ if (options.preview) {
         console.error(`Error: Could not run preview mode ${err.message}`);
         process.exit(-1);
     }
+} else if (options.exportPdf) {
+    try {
+        compilePdf();
+    } catch (err) {
+        console.error(`Error: Could not build PDF file ${err.message}`);
+        process.exit(-1);
+    }
 } else {
     try {
-        const fullHtml = buildFullHtml();
+        const fullHtml = compileHtml();
         fs.writeFileSync(options.filePath + ".html", fullHtml, "utf-8");
         console.log(`Created ${options.filePath}.html`);
     } catch (err) {
-        console.error(`Error: Could not read file ${err.message}`);
+        console.error(`Error: Could not build HTML file ${err.message}`);
         process.exit(-1);
     }
 }
