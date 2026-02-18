@@ -45,8 +45,6 @@ npm run build
 
 ```bash
 bun run src/prezen.js -f path/to/slides.md
-# or
-node src/prezen.js -f path/to/slides.md
 # or, if you built the binary:
 ./prezen -f slides.md
 ```
@@ -54,7 +52,7 @@ node src/prezen.js -f path/to/slides.md
 Options:
 
 ```bash
-Usage: node src/prezen.js [options] or bun run src/prezen.js [options]
+Usage: bun run src/prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
