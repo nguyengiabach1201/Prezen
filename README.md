@@ -54,7 +54,7 @@ node src/prezen.js -f path/to/slides.md
 Options:
 
 ```bash
-Usage: node prezen.js [options] or bun run prezen.js [options]
+Usage: node src/prezen.js [options] or bun run src/prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
