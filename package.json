@@ -17,6 +17,6 @@
         "puppeteer": "^24.37.4"
     },
     "devDependencies": {
-        "@types/bun": "latest"
+        "typescript": "^5.9.3"
     }
 }
