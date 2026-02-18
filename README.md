@@ -87,11 +87,19 @@ Standard GitHub‑Flavored Markdown (tables, fenced code, autolinks, HTML blocks
 ## 🎨 Themes & Custom Styling
 
 Themes are simple CSS blobs imported from `src/assets/styles/themes`. You can
-select one via front‑matter or add additional styles inline:
+select one via front‑matter or use your custom themes, note that you need to keep `custom-theme.css` in the same directory as the output HTML file:
 
 ```yaml
 ---
-stylesheet: |
+theme: custom-theme.css
+---
+```
+
+You can also add additional styles inline:
+
+```yaml
+---
+style: |
     .slide { background: black; color: #fff; }
 ---
 ```

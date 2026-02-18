@@ -48,7 +48,7 @@ const options = {
     title: "Prezen Slides",
     theme: "default",
     paginate: false,
-    stylesheet: null,
+    style: null,
 };
 
 for (let i = 0; i < args.length; i++) {
@@ -102,9 +102,13 @@ function splitMarkdownByHr(markdown) {
 }
 
 function generateFullHtml(htmlSlides) {
+    let isCustomTheme = false;
     let theme;
 
     switch (options.theme) {
+        case "default":
+            theme = themeDefault;
+            break;
         case "academic":
             theme = themeAcademic;
             break;
@@ -112,7 +116,8 @@ function generateFullHtml(htmlSlides) {
             theme = themeGaia;
             break;
         default:
-            theme = themeDefault;
+            isCustomTheme = true;
+            theme = options.theme;
             break;
     }
 
@@ -151,9 +156,9 @@ function generateFullHtml(htmlSlides) {
     <script>hljs.highlightAll();</script>
 
     <style>${shellCss}</style>
-    <style>${theme}</style>
+    ${isCustomTheme ? `<link rel="stylesheet" href="${theme}">` : `<style>${theme}</style>`}
 
-    ${typeof options.stylesheet == "string" ? `<style>${options.stylesheet}</style>` : ""}
+    ${typeof options.style == "string" ? `<style>${options.style}</style>` : ""}
 </head>
 
 <body>
