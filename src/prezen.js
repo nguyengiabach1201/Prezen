@@ -10,10 +10,6 @@ import mathJaxJs from "./assets/plugins/MathJax/tex-chtml.js" with { type: "text
 import shellCss from "./assets/styles/shell.css" with { type: "text" };
 import themeDefault from "./assets/styles/themes/themeDefault.css" with { type: "text" };
 
-import themeAcademic from "./assets/styles/themes/themeAcademic.css" with { type: "text" };
-import themeGaia from "./assets/styles/themes/themeGaia.css" with { type: "text" };
-import themeTest from "./assets/styles/themes/themeTest.css" with { type: "text" };
-
 import controlJs from "./core/control.js" with { type: "text" };
 
 // Prevent the case \\ being treated as \ (as in Latex)
@@ -109,12 +105,12 @@ function generateFullHtml(htmlSlides) {
         case "default":
             theme = themeDefault;
             break;
-        case "academic":
-            theme = themeAcademic;
-            break;
-        case "gaia":
-            theme = themeGaia;
-            break;
+        // case "academic":
+        //     theme = themeAcademic;
+        //     break;
+        // case "gaia":
+        //     theme = themeGaia;
+        //     break;
         default:
             isCustomTheme = true;
             theme = options.theme;
