@@ -52,8 +52,12 @@ To make `<style>` apply to just the current slide, use `@scope` like this:
 ```css
 <style>
     @scope {
-        :scope { background: coral; } /* Styles the container itself */
-        p { color: white; }           /* Styles only paragraphs inside this div */
+        :scope { 
+            background: coral; 
+        } /* Styles the container itself */
+        p { 
+            color: white; 
+        } /* Styles only paragraphs inside this div */
     }
 </style>
 ```

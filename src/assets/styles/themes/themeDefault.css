@@ -27,10 +27,6 @@
     overflow-wrap: break-word;
 }
 
-.slide> :first-child {
-    margin: 0;
-}
-
 /* Typography */
 
 h1,
@@ -39,7 +35,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0.5em 0 0;
+    margin: 0 0 0.5em;
     color: var(--color-secondary);
 }
 
@@ -68,7 +64,7 @@ p {
 
 p,
 blockquote {
-    margin: 1em 0 0;
+    margin: 0 0 1em;
 }
 
 /* Links & Marks */
@@ -83,15 +79,15 @@ mark {
 
 ul,
 ol {
-    margin: 1em 0 0;
+    margin: 0 0 1em;
 }
 
 li {
-    margin: 0.3em 0 0;
+    margin: 0 0 0.3em;
 }
 
 li>p {
-    margin: 0.6em 0 0;
+    margin: 0 0 0.6em;
 }
 
 li:has(input[type="checkbox"]) {
@@ -106,8 +102,7 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     width: 1.5em;
     height: 1.5em;
-    margin-top: 0.3em;
-    margin-right: 0.9em;
+    margin: 0.3em 0.9em 0 0;
     border: 2px solid var(--color-primary);
     border-radius: 4px;
     background-color: transparent;
@@ -151,8 +146,8 @@ code {
 
 pre {
     display: block;
-    margin: 1em 0 0;
-    background: var(--color-dimmed-dark);
+    margin: 0 0 1em;
+    /* background: var(--color-dimmed-dark); */
     padding: 0.5em;
     border-radius: 4px;
 }
@@ -167,7 +162,7 @@ pre code {
 table {
     border-spacing: 0;
     border-collapse: collapse;
-    margin: 1em 0 0;
+    margin: 0 0 1em;
     width: auto;
 }
 
@@ -206,13 +201,12 @@ img {
 
 iframe,
 :not(p)>img {
-    margin: 1em 0 0;
+    margin: 0 0 1em;
 }
 
 figcaption {
     font-size: 0.6em;
     color: var(--color-dimmed-light);
-    margin-top: 0.5em;
 }
 
 /* Blockquotes */
@@ -272,4 +266,8 @@ blockquote::after {
     top: 25px;
     font-size: 28px;
     color: var(--color-dimmed-light);
+}
+
+.footer>:last-child {
+    margin: 0;
 }
