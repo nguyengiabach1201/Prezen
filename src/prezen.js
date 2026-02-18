@@ -1,6 +1,7 @@
 import matter from "gray-matter";
 import { marked } from "marked";
 import puppeteer from "puppeteer";
+import pptxgen from "pptxgenjs";
 import fs from "fs";
 import path from "path";
 
@@ -43,6 +44,7 @@ Usage: bun run prezen.js [options]
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
   --pdf                Export PDF file
+  --pptx               Export PPTX file
   --preview            Enable preview mode with live reload
   --port <port>        Set the port for review mode
   -h, --help           Display this help message
@@ -51,6 +53,7 @@ Options:
 const options = {
     filePath: null,
     exportPdf: false,
+    exportPptx: false,
     title: "Prezen Slides",
     theme: "default",
     paginate: false,
@@ -74,6 +77,9 @@ for (let i = 0; i < args.length; i++) {
             break;
         case "--pdf":
             options.exportPdf = true;
+            break;
+        case "--pptx":
+            options.exportPptx = true;
             break;
         case "--preview":
             options.preview = true;
@@ -261,14 +267,12 @@ function compileHtml() {
     return fullHtml;
 }
 
-async function compilePdf() {
+async function compilePdfAndPptx() {
     getTheme();
     getMarkdownSlides();
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-
-    await page.setViewport({ width: 1280, height: 720 });
 
     const slidesBody = markdownSlides
         .map(
@@ -334,18 +338,55 @@ async function compilePdf() {
 </html>
 `;
 
-    await page.setContent(fullHtml);
+    if (options.exportPdf) {
+        await page.setViewport({ width: 1280, height: 720 });
+        await page.setContent(fullHtml);
 
-    await page.pdf({
-        path: `${options.filePath}.pdf`,
-        width: "1280px",
-        height: "720px",
-        printBackground: true,
-        margin: { top: "0px", right: "0px", bottom: "0px", left: "0px" },
-    });
+        await page.pdf({
+            path: `${options.filePath}.pdf`,
+            width: "1280px",
+            height: "720px",
+            printBackground: true,
+            margin: { top: "0px", right: "0px", bottom: "0px", left: "0px" },
+        });
+
+        console.log(`Created ${options.filePath}.pdf`);
+    }
+
+    if (options.exportPptx) {
+        await page.setViewport({
+            width: 1280,
+            height: 720,
+            deviceScaleFactor: 4,
+        });
+        await page.setContent(fullHtml);
+        const slides = await page.$$(".slide");
+
+        // console.log(slides);
+
+        const pres = new pptxgen();
+
+        for (let i = 0; i < slides.length; i++) {
+            const slideData = await slides[i].screenshot({
+                encoding: "base64",
+            });
+
+            let slide = pres.addSlide();
+
+            slide.addImage({
+                data: `image/png;base64,${slideData}`,
+                x: 0,
+                y: 0,
+                w: "100%",
+                h: "100%",
+            });
+        }
+
+        await pres.writeFile({ fileName: `${options.filePath}.pptx` });
+        console.log(`Created ${options.filePath}.pptx`);
+    }
 
     await browser.close();
-    console.log(`Created ${options.filePath}.pdf`);
 }
 
 if (options.preview) {
@@ -410,11 +451,11 @@ if (options.preview) {
         console.error(`Error: Could not run preview mode ${err.message}`);
         process.exit(-1);
     }
-} else if (options.exportPdf) {
+} else if (options.exportPdf || options.exportPptx) {
     try {
-        compilePdf();
+        compilePdfAndPptx();
     } catch (err) {
-        console.error(`Error: Could not build PDF file ${err.message}`);
+        console.error(`Error: Could not build PDF or PPTX file ${err.message}`);
         process.exit(-1);
     }
 } else {
