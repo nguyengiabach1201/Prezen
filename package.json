@@ -1,0 +1,20 @@
+{
+    "name": "prezen",
+    "version": "3.0.0",
+    "description": "A professional markdown presentation tool",
+    "type": "module",
+    "main": "./src/prezen.js",
+    "scripts": {
+        "build": "bun build ./src/prezen.js --compile --target node"
+    },
+    "engines": {
+        "bun": ">=1.0.0"
+    },
+    "dependencies": {
+        "gray-matter": "^4.0.3",
+        "marked": "^17.0.2"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    }
+}

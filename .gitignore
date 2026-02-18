@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+bun.lockb
+
+# Build output
+dist/
+*.html
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+bun-debug.log*
+
+# Environment variables
+.env
+.env.local

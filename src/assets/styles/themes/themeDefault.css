@@ -1,0 +1,270 @@
+@import 'https://fonts.bunny.net/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap';
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/stackoverflow-light.min.css");
+
+:root {
+    --color-light: #ffffff;
+    --color-dark: #1a202c;
+
+    --color-primary: #3182ce;
+    --color-secondary: #2c5282;
+
+    --color-dimmed-light: #a0aec0;
+    --color-dimmed-dark: #f7fafc;
+}
+
+.prezen-slide-container {
+    font-family: Lato, "Avenir Next", Avenir, "Trebuchet MS", "Segoe UI", sans-serif;
+    background-color: var(--color-light);
+}
+
+.slide {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-size: 35px;
+    line-height: 1.35;
+    letter-spacing: 1.25px;
+    overflow-wrap: break-word;
+}
+
+.slide :first-child {
+    margin: 0;
+}
+
+/* Typography */
+
+.slide h1,
+.slide h2,
+.slide h3,
+.slide h4,
+.slide h5,
+.slide h6 {
+    margin: 0.5em 0 0;
+    color: var(--color-secondary);
+}
+
+.slide h1 {
+    font-size: 1.8em;
+}
+
+.slide h2 {
+    font-size: 1.5em;
+}
+
+.slide h3 {
+    font-size: 1.3em;
+}
+
+.slide h1 strong,
+.slide h2 strong,
+.slide h3 strong {
+    color: var(--color-primary);
+    font-weight: inherit;
+}
+
+.slide p {
+    text-align: justify;
+}
+
+.slide p,
+.slide blockquote {
+    margin: 1em 0 0;
+}
+
+/* Links & Marks */
+
+.slide a,
+.slide mark {
+    color: var(--color-primary);
+    background: transparent;
+}
+
+/* Lists */
+
+.slide ul,
+.slide ol {
+    margin: 1em 0 0;
+}
+
+.slide li {
+    margin: 0.3em 0 0;
+}
+
+.slide li>p {
+    margin: 0.6em 0 0;
+}
+
+.slide li:has(input[type="checkbox"]) {
+    list-style-type: none;
+    margin-left: -0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.slide input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0.3em;
+    margin-right: 0.9em;
+    border: 2px solid var(--color-primary);
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.slide input[type="checkbox"]:checked {
+    background-color: var(--color-primary);
+}
+
+.slide input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 0.4em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.45em;
+    border: solid var(--color-light);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.slide li:has(input[type="checkbox"]:checked) {
+    color: var(--color-dimmed-light);
+    text-decoration: line-through;
+}
+
+/* Code Blocks (Integrating with your Highlight.js) */
+
+.slide code {
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.8em;
+    background: var(--color-dimmed-dark);
+    color: var(--color-dimmed-light);
+    padding: 0.1em 0.2em;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.slide pre {
+    display: block;
+    margin: 1em 0 0;
+    background: var(--color-dimmed-dark);
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+.slide pre code {
+    font-size: 0.7em;
+    padding: 0;
+}
+
+/* Tables */
+
+.slide table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 1em 0 0;
+    width: auto;
+}
+
+.slide table th,
+.slide table td {
+    padding: 0.2em 0.4em;
+    border: 1px solid var(--color-dimmed-light);
+}
+
+.slide table thead th {
+    background: var(--color-light);
+    color: var(--color-dark);
+}
+
+.slide table tbody>tr:nth-child(odd) td {
+    background: var(--color-dimmed-dark);
+}
+
+/* Images & Figures */
+
+.slide figure {
+    margin: 1em 0;
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+.slide img {
+    /* Custom */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.slide figcaption {
+    font-size: 0.6em;
+    color: var(--color-dimmed-light);
+    margin-top: 0.5em;
+}
+
+/* Blockquotes */
+
+.slide blockquote {
+    padding: 0 1em;
+    position: relative;
+    font-style: italic;
+}
+
+.slide blockquote p {
+    margin: 0;
+}
+
+.slide blockquote::before,
+.slide blockquote::after {
+    content: "“";
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    position: absolute;
+    color: var(--color-dimmed-light);
+}
+
+.slide blockquote::before {
+    top: 0;
+    left: 0;
+}
+
+.slide blockquote::after {
+    right: 0;
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+/* Footer/Pagination Placeholder */
+
+.slide::after {
+    content: attr(data-page);
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    font-size: 28px;
+    color: var(--color-dimmed-light);
+}
+
+.slide .footer {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    font-size: 28px;
+    color: var(--color-dimmed-light);
+}
+
+.slide .header {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    font-size: 28px;
+    color: var(--color-dimmed-light);
+}
