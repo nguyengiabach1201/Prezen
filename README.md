@@ -56,6 +56,8 @@ Usage: bun run src/prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
+  --preview            Enable preview mode with live reload
+  --port <port>        Set the port for review mode
   -h, --help           Display this help message
 ```
 
