@@ -56,12 +56,24 @@ Usage: bun run src/prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
+  --pdf                Export PDF file
+  --pptx               Export PPTX file
   --preview            Enable preview mode with live reload
   --port <port>        Set the port for review mode
   -h, --help           Display this help message
 ```
 
 The output file will be `${input}.html`. Open it in any modern browser to run the presentation.
+
+## ⚡ Preview & Export
+
+- **Preview (`--preview`)**: Starts a lightweight preview server with live reload so you can iterate on slides quickly. The server watches the source Markdown (and a custom theme file, when used) and notifies connected browsers to reload when the file changes. The default port is `3000`; override with `--port <port>`. Note: the preview server uses Bun's `Bun.serve`, so run preview via Bun (for example: `bun run src/prezen.js --preview -f slides.md`).
+
+- **Export to PDF (`--pdf`)**: Renders slides headlessly using Puppeteer at a 1280×720 viewport and writes `${input}.pdf`. This creates a print‑ready PDF with background graphics preserved.
+
+- **Export to PPTX (`--pptx`)**: Creates a `.pptx` by taking high‑resolution screenshots of each slide (via Puppeteer) and embedding them into slides using `pptxgenjs`. The result is saved as `${input}.pptx` and works well for sharing or editing in presentation software.
+
+Both exporters rely on Puppeteer (Chromium) and the `pptxgenjs` library (bundled as dependencies). Exports may take a few seconds per slide depending on your machine.
 
 ## 📝 Markdown & Front‑Matter
 
