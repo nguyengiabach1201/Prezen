@@ -36,7 +36,7 @@ marked.use({
 const args = process.argv.slice(2);
 
 const helpMessage = `
-Usage: node prezen.js [options] or bun run prezen.js [options]
+Usage: bun run prezen.js [options]
 
 Options:
   -f, --file <path>    The path to the markdown file to read (Required)
