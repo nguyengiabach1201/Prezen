@@ -24,7 +24,7 @@ style: |
 
 This slide uses the **default** Prezen theme with custom style injected via the YAML front-matter.
 
-- **Theme**: default (one of: default, academic, gaia)
+- **Theme**: default (one of: default, academic, cooporative, hacker)
 - **Font**: Segoe UI (Customized via style)
 - **Features**: paginate, custom CSS, inline styles
 
@@ -85,7 +85,7 @@ Prezen gives you multiple ways to style slides:
 1. **Front-Matter**: Use the `style` key to inject global CSS
 2. **Inline `<style>` blocks**: Add CSS anywhere in your Markdown
 3. **Inline `<div style="...">` tags**: Quick, one-off style tweaks
-4. **Built-in Themes**: Choose `default`, `academic`, or `gaia`
+4. **Built-in Themes**: Choose `default`, `academic`, `cooporative`, or `hacker`
 5. **Combine them all**: Mix and match for maximum flexibility
 
 Start simple with a theme, then layer on custom CSS as needed!

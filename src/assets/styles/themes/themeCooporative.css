@@ -1,0 +1,287 @@
+/* Corporate Theme */
+@import 'https://fonts.bunny.net/css?family=plus-jakarta-sans:400,800|outfit:400,700&display=swap';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/classic-light.min.css");
+
+:root {
+    --color-light: #ffffff;
+    --color-dark: #0f172a;
+    /* Slate 900 */
+    --color-primary: #6366f1;
+    /* Indigo 500 */
+    --color-secondary: #4338ca;
+    /* Indigo 700 */
+    --color-dimmed-light: #94a3b8;
+    --color-dimmed-dark: #f8fafc;
+}
+
+.prezen-slide-container {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--color-light);
+}
+
+.slide {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-size: 35px;
+    line-height: 1.35;
+    letter-spacing: 1.25px;
+    overflow-wrap: break-word;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 0.5em;
+    color: var(--color-secondary);
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Outfit', sans-serif;
+    text-transform: tight;
+    letter-spacing: -0.02em;
+}
+
+input[type="checkbox"] {
+    border-radius: 50%;
+    /* Modern rounded checkboxes */
+}
+
+h1 strong,
+h2 strong,
+h3 strong {
+    color: var(--color-primary);
+    font-weight: inherit;
+}
+
+p {
+    text-align: justify;
+}
+
+p,
+blockquote {
+    margin: 0 0 1em;
+}
+
+/* Links & Marks */
+
+a,
+mark {
+    color: var(--color-primary);
+    background: transparent;
+}
+
+/* Lists */
+
+ul,
+ol {
+    margin: 0 0 1em;
+}
+
+li {
+    margin: 0 0 0.3em;
+}
+
+li>p {
+    margin: 0 0 0.6em;
+}
+
+li:has(input[type="checkbox"]) {
+    list-style-type: none;
+    margin-left: -0.9em;
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.3em 0.9em 0 0;
+    border: 2px solid var(--color-primary);
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--color-primary);
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 0.15em;
+    top: 0em;
+    width: 0.2em;
+    height: 0.4em;
+    border: solid var(--color-light);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+li:has(input[type="checkbox"]:checked) {
+    color: var(--color-dimmed-light);
+    text-decoration: line-through;
+}
+
+/* Code Blocks (Integrating with your Highlight.js) */
+
+code {
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.8em;
+    background: var(--color-dimmed-dark);
+    color: var(--color-dimmed-light);
+    padding: 0.1em 0.2em;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+pre {
+    display: block;
+    margin: 0 0 1em;
+    /* background: var(--color-dimmed-dark); */
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+pre code {
+    font-size: 0.7em;
+    padding: 0;
+}
+
+/* Tables */
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 0 0 1em;
+    width: auto;
+}
+
+table th,
+table td {
+    padding: 0.2em 0.4em;
+    border: 1px solid var(--color-dimmed-light);
+}
+
+table thead th {
+    background: var(--color-light);
+    color: var(--color-dark);
+}
+
+table tbody>tr:nth-child(odd) td {
+    background: var(--color-dimmed-dark);
+}
+
+/* Images & Figures */
+
+figure {
+    margin: 1em 0;
+}
+
+img {
+    max-width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+img {
+    /* Custom */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+iframe,
+:not(p)>img {
+    margin: 0 0 1em;
+}
+
+figcaption {
+    font-size: 0.6em;
+    color: var(--color-dimmed-light);
+}
+
+/* Blockquotes */
+
+blockquote {
+    padding: 0 1em;
+    position: relative;
+    font-style: italic;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+blockquote::before,
+blockquote::after {
+    content: "“";
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    position: absolute;
+    color: var(--color-dimmed-light);
+}
+
+blockquote::before {
+    top: 0;
+    left: 0;
+}
+
+blockquote::after {
+    right: 0;
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+/* Footer/Pagination Placeholder */
+
+::after {
+    content: attr(data-page);
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    font-size: 28px;
+    color: var(--color-dimmed-light);
+}
+
+.footer {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    font-size: 28px;
+    color: var(--color-dimmed-light);
+}
+
+.header {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    font-size: 28px;
+    color: var(--color-dimmed-light);
+}
+
+.footer>:last-child {
+    margin: 0;
+}

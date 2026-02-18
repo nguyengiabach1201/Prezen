@@ -11,7 +11,7 @@ Front‑matter (via [gray‑matter](https://github.com/jonschlinkert/gray-matter
 ## 🚀 Features
 
 - ✅ Converts Markdown to standalone HTML slides
-- 🎨 Three built‑in themes: `default`, `academic`, `gaia`
+- 🎨 Three built‑in themes: `default`, `academic`, `cooporative`, `hacker`
 - 📚 Syntax highlighting with **highlight.js**
 - 🔢 Optional pagination/counters
 - 🧮 Built‑in MathJax for TeX/LaTeX equations
@@ -70,7 +70,7 @@ Each horizontal rule (`---`) denotes a new slide. You may include YAML front‑m
 ```yaml
 ---
 title: "My Talk"
-theme: gaia
+theme: academic
 paginate: true
 ---
 ```
@@ -78,7 +78,7 @@ paginate: true
 Valid front‑matter keys:
 
 - `title` – string used for `<title>` and browser tab
-- `theme` – one of `default`, `academic`, `gaia` (case‑sensitive)
+- `theme` – one of `default`, `academic`, `cooporative`, `hacker` (case‑sensitive)
 - `paginate` – boolean; show `current slide` counter
 - Any other key is ignored but preserved by gray‑matter
 
