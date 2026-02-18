@@ -195,6 +195,10 @@ try {
         options.paginate = true;
     }
 
+    if (typeof data.style === "string") {
+        options.style = data.style;
+    }
+
     const htmlSlides = splitMarkdownByHr(content);
     const fullHtml = generateFullHtml(htmlSlides);
 

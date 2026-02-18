@@ -33,75 +33,75 @@
 
 /* Typography */
 
-.slide h1,
-.slide h2,
-.slide h3,
-.slide h4,
-.slide h5,
-.slide h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0.5em 0 0;
     color: var(--color-secondary);
 }
 
-.slide h1 {
+h1 {
     font-size: 1.8em;
 }
 
-.slide h2 {
+h2 {
     font-size: 1.5em;
 }
 
-.slide h3 {
+h3 {
     font-size: 1.3em;
 }
 
-.slide h1 strong,
-.slide h2 strong,
-.slide h3 strong {
+h1 strong,
+h2 strong,
+h3 strong {
     color: var(--color-primary);
     font-weight: inherit;
 }
 
-.slide p {
+p {
     text-align: justify;
 }
 
-.slide p,
-.slide blockquote {
+p,
+blockquote {
     margin: 1em 0 0;
 }
 
 /* Links & Marks */
 
-.slide a,
-.slide mark {
+a,
+mark {
     color: var(--color-primary);
     background: transparent;
 }
 
 /* Lists */
 
-.slide ul,
-.slide ol {
+ul,
+ol {
     margin: 1em 0 0;
 }
 
-.slide li {
+li {
     margin: 0.3em 0 0;
 }
 
-.slide li>p {
+li>p {
     margin: 0.6em 0 0;
 }
 
-.slide li:has(input[type="checkbox"]) {
+li:has(input[type="checkbox"]) {
     list-style-type: none;
     margin-left: -0.9em;
     display: flex;
     align-items: center;
 }
 
-.slide input[type="checkbox"] {
+input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
     width: 1.5em;
@@ -116,11 +116,11 @@
     flex-shrink: 0;
 }
 
-.slide input[type="checkbox"]:checked {
+input[type="checkbox"]:checked {
     background-color: var(--color-primary);
 }
 
-.slide input[type="checkbox"]:checked::after {
+input[type="checkbox"]:checked::after {
     content: "";
     position: absolute;
     left: 0.4em;
@@ -132,14 +132,14 @@
     transform: rotate(45deg);
 }
 
-.slide li:has(input[type="checkbox"]:checked) {
+li:has(input[type="checkbox"]:checked) {
     color: var(--color-dimmed-light);
     text-decoration: line-through;
 }
 
 /* Code Blocks (Integrating with your Highlight.js) */
 
-.slide code {
+code {
     font-family: "Roboto Mono", monospace;
     font-size: 0.8em;
     background: var(--color-dimmed-dark);
@@ -149,7 +149,7 @@
     border-radius: 10px;
 }
 
-.slide pre {
+pre {
     display: block;
     margin: 1em 0 0;
     background: var(--color-dimmed-dark);
@@ -157,54 +157,59 @@
     border-radius: 4px;
 }
 
-.slide pre code {
+pre code {
     font-size: 0.7em;
     padding: 0;
 }
 
 /* Tables */
 
-.slide table {
+table {
     border-spacing: 0;
     border-collapse: collapse;
     margin: 1em 0 0;
     width: auto;
 }
 
-.slide table th,
-.slide table td {
+table th,
+table td {
     padding: 0.2em 0.4em;
     border: 1px solid var(--color-dimmed-light);
 }
 
-.slide table thead th {
+table thead th {
     background: var(--color-light);
     color: var(--color-dark);
 }
 
-.slide table tbody>tr:nth-child(odd) td {
+table tbody>tr:nth-child(odd) td {
     background: var(--color-dimmed-dark);
 }
 
 /* Images & Figures */
 
-.slide figure {
+figure {
     margin: 1em 0;
 }
 
-.slide img {
+img {
     max-width: 100%;
     max-height: 450px;
     object-fit: contain;
 }
 
-.slide img {
+img {
     /* Custom */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-.slide figcaption {
+iframe,
+:not(p)>img {
+    margin: 1em 0;
+}
+
+figcaption {
     font-size: 0.6em;
     color: var(--color-dimmed-light);
     margin-top: 0.5em;
@@ -212,18 +217,18 @@
 
 /* Blockquotes */
 
-.slide blockquote {
+blockquote {
     padding: 0 1em;
     position: relative;
     font-style: italic;
 }
 
-.slide blockquote p {
+blockquote p {
     margin: 0;
 }
 
-.slide blockquote::before,
-.slide blockquote::after {
+blockquote::before,
+blockquote::after {
     content: "“";
     font-family: "Times New Roman", serif;
     font-weight: bold;
@@ -231,12 +236,12 @@
     color: var(--color-dimmed-light);
 }
 
-.slide blockquote::before {
+blockquote::before {
     top: 0;
     left: 0;
 }
 
-.slide blockquote::after {
+blockquote::after {
     right: 0;
     bottom: 0;
     transform: rotate(180deg);
@@ -244,7 +249,7 @@
 
 /* Footer/Pagination Placeholder */
 
-.slide::after {
+::after {
     content: attr(data-page);
     position: absolute;
     right: 25px;
@@ -253,7 +258,7 @@
     color: var(--color-dimmed-light);
 }
 
-.slide .footer {
+.footer {
     position: absolute;
     left: 25px;
     bottom: 25px;
@@ -261,7 +266,7 @@
     color: var(--color-dimmed-light);
 }
 
-.slide .header {
+.header {
     position: absolute;
     left: 25px;
     top: 25px;
