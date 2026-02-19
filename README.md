@@ -52,15 +52,7 @@ bun run src/prezen.js -f path/to/slides.md
 Options:
 
 ```bash
-Usage: bun run src/prezen.js [options]
-
-Options:
-  -f, --file <path>    The path to the markdown file to read (Required)
-  --pdf                Export PDF file
-  --pptx               Export PPTX file
-  --preview            Enable preview mode with live reload
-  --port <port>        Set the port for review mode
-  -h, --help           Display this help message
+Usage: bun prezen.js -f <file.md> [--pdf] [--pptx] [--preview] [--port 3000]
 ```
 
 The output file will be `${input}.html`. Open it in any modern browser to run the presentation.
