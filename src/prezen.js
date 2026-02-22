@@ -289,7 +289,6 @@ try {
     } else {
         const { slides, config } = parseMarkdown(options.file);
         const themeCss = await resolveTheme(config.theme, options.file);
-        console.log(themeCss);
         Bun.write(
             `${options.file}.html`,
             renderHTML({ slides, config, themeCss }),
