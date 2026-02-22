@@ -99,6 +99,16 @@ theme: custom-theme.css
 ---
 ```
 
+Currently, Prezen support one class, which is `center` that makes your presentation being aligned center vertically:
+
+```yaml
+---
+class: center
+# or
+class:
+- center
+```
+
 You can also add additional styles inline:
 
 ```yaml
