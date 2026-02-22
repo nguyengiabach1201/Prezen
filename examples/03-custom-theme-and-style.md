@@ -1,5 +1,6 @@
 ---
 title: "Custom Theme & Style Demo"
+class: center
 theme: 03-custom-theme-and-style.css
 paginate: true
 style: |
@@ -25,6 +26,7 @@ style: |
 This slide uses the custom theme injected via the YAML front-matter.
 
 - **Theme**: custom theme
+- **Class**: _center_
 - **Font**: Segoe UI (Customized via style)
 - **Features**: paginate, custom CSS, inline styles
 
@@ -52,11 +54,11 @@ To make `<style>` apply to just the current slide, use `@scope` like this:
 ```css
 <style>
     @scope {
-        :scope { 
-            background: coral; 
+        :scope {
+            background: coral;
         } /* Styles the container itself */
-        p { 
-            color: white; 
+        p {
+            color: white;
         } /* Styles only paragraphs inside this div */
     }
 </style>

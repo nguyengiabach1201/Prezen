@@ -72,6 +72,7 @@ function parseMarkdown(filePath) {
             theme: data.theme || "default",
             paginate: !!data.paginate,
             style: data.style || "",
+            class: Array.isArray(data.class) ? data.class : [data.class],
         },
     };
 }
@@ -79,11 +80,12 @@ function parseMarkdown(filePath) {
 /**
  * Resolves the CSS theme string.
  */
-function resolveTheme(themeName, markdownPath) {
+async function resolveTheme(themeName, markdownPath) {
     if (THEMES[themeName]) return THEMES[themeName];
     try {
         const customPath = path.resolve(path.dirname(markdownPath), themeName);
-        return Bun.readFileSync(customPath, "utf-8");
+        // console.log(await Bun.file(customPath, "utf-8").text());
+        return await Bun.file(customPath, "utf-8").text();
     } catch {
         console.warn(
             `Warning: Theme "${themeName}" not found. Falling back to default.`,
@@ -138,7 +140,16 @@ body {
     box-sizing: border-box;
 }`
             : shellCss
-    }${themeCss}${config.style}</style>
+    }${themeCss}${config.style}${
+        config.class.includes("center")
+            ? `
+.slide {
+    display: grid;
+    align-content: center;
+}
+`
+            : ""
+    }</style>
     <script>${highlightJs}</script>
     <script>hljs.highlightAll();</script>
     ${
@@ -213,14 +224,14 @@ function startPreviewServer(filePath, port) {
 
     Bun.serve({
         port,
-        fetch(req, server) {
+        async fetch(req, server) {
             if (new URL(req.url).pathname === "/ws") {
                 return server.upgrade(req)
                     ? undefined
                     : new Response("WS upgrade failed", { status: 400 });
             }
             const { slides, config } = parseMarkdown(filePath);
-            const themeCss = resolveTheme(config.theme, filePath);
+            const themeCss = await resolveTheme(config.theme, filePath);
             return new Response(
                 renderHTML({ slides, config, themeCss, isPreview: true }),
                 {
@@ -272,13 +283,14 @@ try {
         startPreviewServer(options.file, options.port);
     } else if (options.pdf || options.pptx) {
         const { slides, config } = parseMarkdown(options.file);
-        const themeCss = resolveTheme(config.theme, options.file);
+        const themeCss = await resolveTheme(config.theme, options.file);
         const html = renderHTML({ slides, config, themeCss, isExport: true });
         await exportAssets(options.file, html, options);
     } else {
         const { slides, config } = parseMarkdown(options.file);
-        const themeCss = resolveTheme(config.theme, options.file);
-        Bun.writeFileSync(
+        const themeCss = await resolveTheme(config.theme, options.file);
+        console.log(themeCss);
+        Bun.write(
             `${options.file}.html`,
             renderHTML({ slides, config, themeCss }),
         );
