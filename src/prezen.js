@@ -1,4 +1,3 @@
-import fs from "fs";
 import path from "path";
 import { BrowserFinder } from "@agent-infra/browser-finder";
 import matter from "gray-matter";
@@ -84,7 +83,7 @@ function resolveTheme(themeName, markdownPath) {
     if (THEMES[themeName]) return THEMES[themeName];
     try {
         const customPath = path.resolve(path.dirname(markdownPath), themeName);
-        return fs.readFileSync(customPath, "utf-8");
+        return Bun.readFileSync(customPath, "utf-8");
     } catch {
         console.warn(
             `Warning: Theme "${themeName}" not found. Falling back to default.`,
@@ -239,7 +238,12 @@ function startPreviewServer(filePath, port) {
         },
     });
 
-    fs.watch(filePath, (event) => event === "change" && reload());
+    (async () => {
+        for await (const event of Bun.watch(filePath)) {
+            if (event === "change") reload();
+        }
+    })();
+
     console.log(`Preview: http://localhost:${port}`);
 }
 
@@ -274,7 +278,7 @@ try {
     } else {
         const { slides, config } = parseMarkdown(options.file);
         const themeCss = resolveTheme(config.theme, options.file);
-        fs.writeFileSync(
+        Bun.writeFileSync(
             `${options.file}.html`,
             renderHTML({ slides, config, themeCss }),
         );
