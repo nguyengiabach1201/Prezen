@@ -8,7 +8,7 @@ Using HTML `div` blocks allows for layouts that standard Markdown cannot achieve
 
 ---
 
-<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%">
 <div>
 
 # 🎯 Vertically Centered Header
