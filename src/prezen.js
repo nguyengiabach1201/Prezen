@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
+import { BrowserFinder } from "@agent-infra/browser-finder";
 import matter from "gray-matter";
 import { marked } from "marked";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 import pptxgen from "pptxgenjs";
 
 // Asset Imports (Bun-specific attribute syntax)
@@ -161,7 +162,14 @@ body {
 // --- Actions ---
 
 async function exportAssets(filePath, html, options) {
-    const browser = await puppeteer.launch();
+    const finder = new BrowserFinder();
+    const resolved = finder.findBrowser();
+    const execPath = resolved?.path || "";
+    if (!execPath) {
+        throw new Error("No compatible browser found for Puppeteer");
+    }
+
+    const browser = await puppeteer.launch({ executablePath: execPath });
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 720, deviceScaleFactor: 4 });
     await page.setContent(html, { waitUntil: "networkidle0" });
