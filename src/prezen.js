@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 import { BrowserFinder } from "@agent-infra/browser-finder";
 import matter from "gray-matter";
@@ -84,7 +85,6 @@ async function resolveTheme(themeName, markdownPath) {
     if (THEMES[themeName]) return THEMES[themeName];
     try {
         const customPath = path.resolve(path.dirname(markdownPath), themeName);
-        // console.log(await Bun.file(customPath, "utf-8").text());
         return await Bun.file(customPath, "utf-8").text();
     } catch {
         console.warn(
@@ -250,7 +250,7 @@ function startPreviewServer(filePath, port) {
     });
 
     (async () => {
-        for await (const event of Bun.watch(filePath)) {
+        for await (const event of fs.watch(filePath)) {
             if (event === "change") reload();
         }
     })();
