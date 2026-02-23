@@ -81,11 +81,11 @@ function parseMarkdown(filePath) {
 /**
  * Resolves the CSS theme string.
  */
-async function resolveTheme(themeName, markdownPath) {
+function resolveTheme(themeName, markdownPath) {
     if (THEMES[themeName]) return THEMES[themeName];
     try {
         const customPath = path.resolve(path.dirname(markdownPath), themeName);
-        return await Bun.file(customPath, "utf-8").text();
+        return fs.readFileSync(customPath, "utf-8");
     } catch {
         console.warn(
             `Warning: Theme "${themeName}" not found. Falling back to default.`,
@@ -231,7 +231,7 @@ function startPreviewServer(filePath, port) {
                     : new Response("WS upgrade failed", { status: 400 });
             }
             const { slides, config } = parseMarkdown(filePath);
-            const themeCss = await resolveTheme(config.theme, filePath);
+            const themeCss = resolveTheme(config.theme, filePath);
             return new Response(
                 renderHTML({ slides, config, themeCss, isPreview: true }),
                 {
@@ -249,12 +249,7 @@ function startPreviewServer(filePath, port) {
         },
     });
 
-    (async () => {
-        for await (const event of fs.watch(filePath)) {
-            if (event === "change") reload();
-        }
-    })();
-
+    fs.watch(filePath, (event) => event === "change" && reload());
     console.log(`Preview: http://localhost:${port}`);
 }
 
@@ -283,13 +278,13 @@ try {
         startPreviewServer(options.file, options.port);
     } else if (options.pdf || options.pptx) {
         const { slides, config } = parseMarkdown(options.file);
-        const themeCss = await resolveTheme(config.theme, options.file);
+        const themeCss = resolveTheme(config.theme, options.file);
         const html = renderHTML({ slides, config, themeCss, isExport: true });
         await exportAssets(options.file, html, options);
     } else {
         const { slides, config } = parseMarkdown(options.file);
-        const themeCss = await resolveTheme(config.theme, options.file);
-        Bun.write(
+        const themeCss = resolveTheme(config.theme, options.file);
+        fs.readFileSync(
             `${options.file}.html`,
             renderHTML({ slides, config, themeCss }),
         );
