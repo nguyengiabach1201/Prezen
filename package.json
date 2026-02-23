@@ -5,7 +5,7 @@
     "type": "module",
     "main": "./src/prezen.js",
     "scripts": {
-        "build": "bun build ./src/prezen.js --compile --target node"
+        "build": "bun build ./src/prezen.js --compile --minify --sourcemap --target bun"
     },
     "engines": {
         "bun": ">=1.0.0"

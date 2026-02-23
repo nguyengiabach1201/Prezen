@@ -273,24 +273,31 @@ if (options.help || !options.file) {
 }
 
 // Execution flow
-try {
-    if (options.preview) {
-        startPreviewServer(options.file, options.port);
-    } else if (options.pdf || options.pptx) {
-        const { slides, config } = parseMarkdown(options.file);
-        const themeCss = resolveTheme(config.theme, options.file);
-        const html = renderHTML({ slides, config, themeCss, isExport: true });
-        await exportAssets(options.file, html, options);
-    } else {
-        const { slides, config } = parseMarkdown(options.file);
-        const themeCss = resolveTheme(config.theme, options.file);
-        fs.readFileSync(
-            `${options.file}.html`,
-            renderHTML({ slides, config, themeCss }),
-        );
-        console.log(`HTML Created: ${options.file}.html`);
+(async () => {
+    try {
+        if (options.preview) {
+            startPreviewServer(options.file, options.port);
+        } else if (options.pdf || options.pptx) {
+            const { slides, config } = parseMarkdown(options.file);
+            const themeCss = resolveTheme(config.theme, options.file);
+            const html = renderHTML({
+                slides,
+                config,
+                themeCss,
+                isExport: true,
+            });
+            await exportAssets(options.file, html, options);
+        } else {
+            const { slides, config } = parseMarkdown(options.file);
+            const themeCss = resolveTheme(config.theme, options.file);
+            fs.readFileSync(
+                `${options.file}.html`,
+                renderHTML({ slides, config, themeCss }),
+            );
+            console.log(`HTML Created: ${options.file}.html`);
+        }
+    } catch (err) {
+        console.error(`Error: ${err.message}`);
+        process.exit(1);
     }
-} catch (err) {
-    console.error(`Error: ${err.message}`);
-    process.exit(1);
-}
+})();
